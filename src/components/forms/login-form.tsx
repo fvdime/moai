@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import Input from "../input";
+import Button from "../button";
 
 type LoginProps = {
   loginHeader: string
@@ -15,66 +17,66 @@ const LoginForm = ({loginHeader, email,
   password, loginButtonLabel, loginFooterLabel, loginFooterLink}: LoginProps) => {  
 
   return (
-    <div className="flex flex-row justify-center items-center h-full w-full">
-      <div className="h-screen w-1/5 bg-zinc-950 flex flex-col items-center justify-between text-7xl font-bold uppercase text-white p-4">
+    <div className="flex flex-row justify-center items-center h-full w-screen text-white">
+      <div className="h-full w-1/5 bg-indigo-950 p-4">
       </div>
-      <form className="h-full w-full md:w-3/5 py-16 px-4 md:px-16">
+      <form className="h-full w-full md:w-3/5 py-16 px-4 md:px-16 bg-zinc-900 flex flex-col justify-center">
         <div className="flex items-center justify-center mb-5">
           <p className="text-3xl font-medium">
             {loginHeader}
           </p>
         </div>
         <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300"></div>
-        <div className="mb-6">
-          <label
-            htmlFor="email"
-            className="block mb-2 text-sm font-medium text-gray-900"
-          >
-            {email}
-          </label>
+          <div className="mb-6">
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium"
+            >
+              {email}
+            </label>
 
-          <input
-            type="text"
-            className="border border-gray-900 text-gray-900 rounded-3xl focus:ring-blue-700 focus:border-blue-500 block w-full p-2"
+            <Input
             placeholder={email}
-          />
-        </div>
-
+            // disabled={}
+            type="email"
+            />
+          </div>
         <div className="mb-8">
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900"
+            className="block mb-2 text-sm font-medium"
           >
             {password}
           </label>
 
-          <input
-            type="password"
-            className="border border-gray-900 text-gray-900 rounded-3xl focus:ring-blue-700 focus:border-blue-500 block w-full p-2"
+          <Input
             placeholder={password}
-          />
+            // disabled={}
+            type="password"
+            />
         </div>
 
         <div className="text-center">
-          <button
-            type="button"
-            className="w-full text-white bg-zinc-950 shadow-md hover:shadow-lg focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-3xl px-5 py-2.5 text-center"
-          >
-            {loginButtonLabel}
-          </button>
+          <Button
+          onClick={() => {}}
+          label={loginButtonLabel}
+          secondary
+          fullWidth
+          large
+          />
 
-          <p className="mb-0 mt-4 pt-1 text-sm font-medium text-gray-900">
+          <p className="mb-0 mt-4 pt-1 text-sm font-medium text-center">
             {loginFooterLabel}
             <Link
-              href={`/login`}
-              className="ml-2 text-sky-700 transition duration-150 ease-in-out hover:text-sky-800 focus:text-sky-800 active:text-sky-600 cursor-pointer"
+              href={`/register`}
+              className="ml-2 text-sky-600 transition duration-150 ease-in-out hover:text-sky-700 focus:text-sky-800 active:text-sky-600 cursor-pointer"
             >
               {loginFooterLink}
             </Link>
           </p>
         </div>
       </form>
-      <div className="h-screen w-1/5"></div>
+      <div className="h-screen w-1/5 bg-zinc-900"></div>
     </div>
   );
 };
