@@ -1,25 +1,33 @@
+import Image from 'next/image'
 import React from 'react'
+import CommentSection from './comment-section'
 
 const PostContent = () => {
   return (
     <div>
       <main className="antialiased">
         <div className="flex justify-between text-white">
-            <article className="w-full format format-sm sm:format-base lg:format-lg format-blue format-invert bg-zinc-900 rounded leading-1.5 p-4 border border-zinc-700">
-                <div className="mb-4 lg:mb-6 not-format">
-                    <address className="flex flex-row w-full justify-between items-center mb-6 not-italic">
-                        <div className='flex flex-row justify-center items-center gap-4'>
-                            <img className="w-8 h-8 rounded-full" src="/1.jpg" alt="profile image" />
-                            <div className="flex items-center justify-between">
-                            <div className="text-xs font-bold">
-                                <span className="text-white">t/topic name</span>
-                                <span className="text-zinc-400"> - username</span>
-                            </div>
-                        </div>
-                </div>
-                    <span className="text-xs font-normal text-zinc-400">11:46</span>
-                    </address>
-                    <h1 className="mb-4 text-xl font-extrabold leading-tight lg:mb-6 lg:text-2xl text-white">Best practices for successful prototypes</h1>
+          <article className="w-full format format-sm sm:format-base lg:format-lg format-blue format-invert bg-zinc-900 rounded leading-1.5 p-4 border border-zinc-700">
+              <div className="mb-4 lg:mb-6 not-format">
+                <address className="flex flex-row w-full justify-between items-center mb-6 not-italic">
+                  <div className='flex flex-row justify-center items-center gap-4'>
+                    <Image
+                      src="/1.jpg"
+                      alt='user photo'
+                      height={32}
+                      width={32}
+                      className='w-8 h-8 rounded-full object-cover object-center'
+                    />
+                    <div className="flex items-center justify-between">
+                      <div className="text-xs font-bold">
+                        <span className="text-white">t/topic name</span>
+                        <span className="text-zinc-400"> - username</span>
+                      </div>
+                    </div>
+                  </div>
+                  <span className="text-xs font-normal text-zinc-400">11:46</span>
+                </address>
+                <h1 className="mb-4 text-xl font-extrabold leading-tight lg:mb-6 lg:text-2xl text-white">Best practices for successful prototypes</h1>
                 </div>
                 <div className='text-sm'>
                     <p>Flowbite is an open-source library of UI components built with the utility-first
@@ -27,8 +35,7 @@ const PostContent = () => {
                         datepickers.</p>
                     <p>Before going digital, you might benefit from scribbling down some ideas in a sketchbook. This way,
                         you can think things through before committing to an actual design project.</p>
-                    <p>But then I found a <a href="/">component library based on Tailwind CSS called
-                            Flowbite</a>. It comes with the most commonly used UI components, such as buttons, navigation
+                    <p>It comes with the most commonly used UI components, such as buttons, navigation
                         bars, cards, form elements, and more which are conveniently built with the utility classNamees from
                         Tailwind CSS.</p>
                     <h2>Getting started with Flowbite</h2>
@@ -62,43 +69,9 @@ const PostContent = () => {
                     <p>A typeface is a collection of letters. While each letter is unique, certain shapes are shared across
                         letters. A typeface represents shared patterns across a collection of letters.</p>
                 </div>
-                
             </article>
         </div>
-            <section className="my-8 bg-zinc-900 rounded leading-1.5 p-4 border border-zinc-700">
-                <div className="flex justify-between items-center mb-6">
-                    <h2 className="text-md font-bold">Discussion (20)</h2>
-                </div>
-                <div className="">
-                    <form className="mb-6">
-                        <div className="py-2 px-4 mb-4 rounded-lg rounded-t-lg border  bg-zinc-800 border-zinc-700">
-                        <label  className="sr-only">Your comment</label>
-                        <textarea className="px-0 w-full text-sm  border-0 focus:ring-0 text-white placeholder-zinc-400 bg-zinc-800"
-                        placeholder="Write a comment..." required></textarea>
-                        </div>
-                        <div className='self-end'>
-                            <button>post comment button</button>
-                        </div>
-                    </form>
-                    <div>
-                    <article className="p-4 text-base rounded-lg bg-zinc-900">
-                        <footer className="flex justify-between items-center mb-2">
-                        <div className="flex items-center">
-                            <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
-                            <img
-                                className="mr-2 w-6 h-6 rounded-full"
-                                src="/1.jpg"
-                                alt="Michael Gough" /> Michael Gough</p> 
-                                <p className="text-sm text-zinc-400"><time>Feb 8, 2022</time></p>
-                        </div>
-                        </footer>
-                        <p className='text-white text-sm'>Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
-                        instruments for the UX designers. The knowledge of the design tools are as important as the
-                        creation of the design strategy.</p>
-                    </article>
-                    </div>
-                </div>
-            </section>
+        <CommentSection/>
       </main>
     </div>
   )
