@@ -66,6 +66,7 @@ export async function POST(req: NextRequest) {
             user.password = '';
 
             const token = await new SignJWT({
+                id: user.id,
                 username: user.username,
                 email: user.email,
             })
@@ -75,7 +76,7 @@ export async function POST(req: NextRequest) {
                 .sign(getJwtSecretKey());
 
             const response = NextResponse.json(
-                { success: true },
+                { success: true, user, token },
                 { status: 200, headers: { 'content-type': 'application/json' } }
             );
 

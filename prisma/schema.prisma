@@ -24,6 +24,17 @@ model User {
 
   posts    Post[]
   comments Comment[]
+  topics   Topic[]
+}
+
+model Topic {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String   @db.ObjectId
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  posts     Post[]
 }
 
 model Post {
@@ -33,8 +44,10 @@ model Post {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String   @db.ObjectId
+  topicId   String   @db.ObjectId
 
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic    Topic     @relation(fields: [topicId], references: [id], onDelete: Cascade)
   comments Comment[]
 }
 

@@ -64,6 +64,7 @@ export async function POST(req: NextRequest) {
 
         if (savedUser) {
             const token = await new SignJWT({
+                id: savedUser.id,
                 username: savedUser.username,
                 email: savedUser.email,
             })
@@ -73,7 +74,7 @@ export async function POST(req: NextRequest) {
                 .sign(getJwtSecretKey());
 
             const response = NextResponse.json(
-                { success: true },
+                { success: true, user: savedUser, token },
                 { status: 201, headers: { 'content-type': 'application/json' } }
             );
 
@@ -92,6 +93,7 @@ export async function POST(req: NextRequest) {
             message: 'User not created',
         });
     } catch (err) {
+        console.log(err);
         return error({
             statusCode: httpStatus.INTERNAL_SERVER_ERROR,
             error: err,

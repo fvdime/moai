@@ -63,3 +63,9 @@ export async function PUT(req: NextRequest) {
         });
     }
 }
+
+export async function GET(req: NextRequest) {
+    // console.log('içerde', req.headers.get('id'));
+
+    return NextResponse.json({ success: true });
+}
