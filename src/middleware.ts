@@ -40,7 +40,7 @@ export default async function middleware(request: NextRequest) {
             );
         }
 
-        console.log('pay', payload);
+        //console.log('pay', payload);
 
         return NextResponse.next({
             headers: {
@@ -77,7 +77,9 @@ export const config = {
     matcher: [
         '/',
         '/(en|de|es|jp)/:path*',
-        '/api/:path*',
+        '/api/topics/create',
+        '/api/topics/delete/:path*',
+        '/api/topics/update/:path*',
         '/api/users',
         '/api/users/profileimage',
     ],
