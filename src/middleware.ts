@@ -4,8 +4,13 @@ import { verifyJwtToken } from '@/libs/auth';
 
 const AUTH_PAGES = ['/login', '/register'];
 
+const PROTECTED_PAGES = ['/profile'];
+
 const isAuthPages = (url: string) =>
     AUTH_PAGES.some((page) => page.startsWith(url));
+
+const isProtectedPages = (url: string) =>
+    PROTECTED_PAGES.some((page) => page.startsWith(url));
 
 export default async function middleware(request: NextRequest) {
     const { url, nextUrl, cookies } = request;
@@ -58,7 +63,10 @@ export default async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL(`/`, url));
     }
 
-    if (!payload) {
+    const temp2 = nextUrl.pathname.slice(3, nextUrl.pathname.length - 1);
+    let isProtectedPageRequest = temp != '' ? isProtectedPages(temp2) : false;
+
+    if (!payload && isProtectedPageRequest) {
         const searchParams = new URLSearchParams(nextUrl.searchParams);
         searchParams.set('next', nextUrl.pathname);
         const response = NextResponse.redirect(
