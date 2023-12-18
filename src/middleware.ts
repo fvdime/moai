@@ -10,11 +10,6 @@ const isAuthPages = (url: string) =>
 export default async function middleware(request: NextRequest) {
     const { url, nextUrl, cookies } = request;
 
-    cookies.set(
-        'token',
-        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIiLCJpYXQiOjE3MDI3MzczNzEsImV4cCI6MTczNDI3MzQwMiwiYXVkIjoiIiwic3ViIjoiIiwiR2l2ZW5OYW1lIjoiSm9obm55IiwiU3VybmFtZSI6IlJvY2tldCIsIkVtYWlsIjoianJvY2tldEBleGFtcGxlLmNvbSIsIlJvbGUiOlsiTWFuYWdlciIsIlByb2plY3QgQWRtaW5pc3RyYXRvciJdfQ.jNU6LqrdOrpBoQhgtmOB9s_JAZqR5vFTnG3YytqWH_g'
-    );
-
     const defaultLocale = request.headers.get('x-your-custom-locale') || 'en';
     const handleI18nRouting = createIntlMiddleware({
         locales: ['en', 'de', 'es', 'jp'],
@@ -44,9 +39,14 @@ export default async function middleware(request: NextRequest) {
                 { status: 401 }
             );
         }
-        if (typeof payload.id == 'string')
-            response.headers.set('id', payload?.id);
-        return NextResponse.next();
+
+        console.log('pay', payload);
+
+        return NextResponse.next({
+            headers: {
+                id: JSON.stringify(payload?.id),
+            },
+        });
     }
 
     if (isAuthPageRequested) {
@@ -73,15 +73,12 @@ export default async function middleware(request: NextRequest) {
     return response;
 }
 
-const SavedApiRoutes = ['/api/users', '/api/users/profileimage'];
-
-const matcher = [
-    '/',
-    '/(en|de|es|jp)/:path*',
-    '/api/:path*',
-    ...SavedApiRoutes,
-];
-
 export const config = {
-    matcher: matcher,
+    matcher: [
+        '/',
+        '/(en|de|es|jp)/:path*',
+        '/api/:path*',
+        '/api/users',
+        '/api/users/profileimage',
+    ],
 };
