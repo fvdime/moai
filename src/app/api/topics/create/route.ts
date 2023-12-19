@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
         const isValidData = createSchema.parse(body);
-        const id = JSON.parse(req.headers.get('id') || '');
+        const id = req.headers.get('id') || '';
 
         const user = await GetUserById(id);
 

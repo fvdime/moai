@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import httpStatus from 'http-status';
 import error from '@/libs/error-handler';
 import prisma from '@/libs/prisma';
+import { DeletePost } from '@/services/post';
 
 export async function DELETE(
     req: NextRequest,
@@ -10,14 +11,12 @@ export async function DELETE(
     try {
         const userId = req.headers.get('id') || '';
 
-        const deletedTopic = await prisma.topic.delete({
-            where: {
-                id: params.id,
-                userId: userId,
-            },
+        const deletedPost = await DeletePost({
+            id: params.id,
+            userId: userId,
         });
 
-        if (deletedTopic)
+        if (deletedPost)
             return NextResponse.json(
                 { success: true },
                 { status: httpStatus.OK }

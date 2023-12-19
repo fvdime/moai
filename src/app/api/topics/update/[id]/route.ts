@@ -3,6 +3,7 @@ import httpStatus from 'http-status';
 import error from '@/libs/error-handler';
 import prisma from '@/libs/prisma';
 import { z } from 'zod';
+import { GetTopic } from '@/services/topic';
 
 const updateSchema = z
     .object({
@@ -18,14 +19,14 @@ export async function PUT(
     try {
         const body = await req.json();
         const isValidData = updateSchema.parse(body);
-        const userId = JSON.parse(req.headers.get('id') || '');
+        const userId = String(req.headers.get('id'));
 
-        const existTopic = await prisma.topic.findFirst({
-            where: {
-                id: params.id,
-                userId: userId,
-            },
+        const existTopic = await GetTopic({
+            id: params.id,
+            userId: userId,
         });
+
+        console.log(existTopic);
 
         if (!existTopic)
             return NextResponse.json(

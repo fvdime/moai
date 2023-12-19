@@ -49,7 +49,7 @@ export default async function middleware(request: NextRequest) {
 
         return NextResponse.next({
             headers: {
-                id: JSON.stringify(payload?.id),
+                id: String(payload?.id),
             },
         });
     }
@@ -88,6 +88,8 @@ export const config = {
         '/api/topics/create',
         '/api/topics/delete/:path*',
         '/api/topics/update/:path*',
+        '/api/posts/create',
+        '/api/posts/delete/:path*',
         '/api/users',
         '/api/users/profileimage',
     ],
