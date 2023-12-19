@@ -1,17 +1,19 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes, DetailedHTMLProps } from 'react'
 
 interface ButtonProps {
-  label: string,
-  secondary?: boolean,
-  fullWidth?: boolean,
-  large?: boolean,
-  onClick?: () => void,
+  label: string
+  secondary?: boolean
+  fullWidth?: boolean
+  large?: boolean
+  type?: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
+  onClick?: () => void
 }
 
-const Button = ({label, secondary, fullWidth, large, onClick}: ButtonProps) => {
+const Button = ({label, secondary, fullWidth, large, type, onClick}: ButtonProps) => {
   return (
     <button 
     onClick={onClick}
+    type="submit"
     className={`rounded-full text-center text-semibold border border-zinc-100 transition-all ease-in duration-500 text-sm
     ${fullWidth ? 'w-full' : 'w-fit'} 
     ${secondary ? 'bg-transparent' : 'bg-zinc-100'} 

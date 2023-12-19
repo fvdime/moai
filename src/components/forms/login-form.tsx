@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import {Link} from "../navigation-link";
 import Input from "../input";
 import Button from "../button";
 

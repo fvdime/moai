@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import '../globals.css'
 import {notFound} from 'next/navigation';
 
-const locales = ['en', 'de', 'es', 'jp'];
+const locales = ['en', 'de', 'es', 'ja'];
 
 const inter = Inter({ subsets: ['latin'] })
 
