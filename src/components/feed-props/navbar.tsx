@@ -1,9 +1,9 @@
 "use client"
 
 import React, {useState} from 'react'
-import LanguageSwitchButton from '../language-switcher'
-import Link from 'next/link'
+import {Link} from '../navigation-link'
 import Image from 'next/image'
+import LanguageSwitcher from '../language-switcher'
 
 type NavbarProps = {
   Search: string
@@ -53,7 +53,13 @@ const Navbar = ({Search, Profile, Settings, Logout, ContactLink, SourceLink}: Na
               className='w-8 h-8 rounded-full object-cover object-center'
             />
           </button>
-          <LanguageSwitchButton/>
+          {/* <LanguageSwitcher/> */}
+          <div>
+            <Link href="/feed" locale="en">EN</Link>
+            <Link href="/feed" locale="de">DE</Link>
+            <Link href="/" locale="en">EN</Link>
+            <Link href="/" locale="en">EN</Link>
+          </div>
         </div>
         </div>
       </nav>
@@ -63,7 +69,7 @@ const Navbar = ({Search, Profile, Settings, Logout, ContactLink, SourceLink}: Na
             <span className="block text-sm text-white">Bonnie Green</span>
             <span className="block text-xs font-semibold truncate text-zinc-400">name@flowbite.com</span>
           </div>
-          <ul className="py-2 text-xs font-semibold">
+          {/* <ul className="py-2 text-xs font-semibold">
             <li>
               <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{Profile}</Link>
             </li>
@@ -80,7 +86,7 @@ const Navbar = ({Search, Profile, Settings, Logout, ContactLink, SourceLink}: Na
             <li>
               <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{SourceLink}</Link>
             </li>
-        </ul>
+        </ul> */}
         </div>
       }
     </div>
