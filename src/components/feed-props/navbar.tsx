@@ -5,8 +5,16 @@ import LanguageSwitchButton from '../language-switcher'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const Navbar = () => {
+type NavbarProps = {
+  Search: string
+  Profile: string
+  Settings: string
+  Logout: string
+  ContactLink: string
+  SourceLink: string
+}
 
+const Navbar = ({Search, Profile, Settings, Logout, ContactLink, SourceLink}: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -30,23 +38,22 @@ const Navbar = () => {
                 </svg>
                 <span className="sr-only">Search icon</span>
               </div>
-              <input type="text" className="block w-full py-2 px-4 ps-10 text-xs border rounded-lg bg-zinc-700 border-zinc-600 placeholder-zinc-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder="Search..." />
+              <input type="text" className="block w-full py-2 px-4 ps-10 text-xs border rounded-lg bg-zinc-700 border-zinc-600 placeholder-zinc-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder={Search} />
             </div>
         </div>
         <div className="flex flex-row items-center gap-2 md:gap-4 rtl:space-x-reverse">
           <button type="button" className="flex text-sm bg-zinc-800 rounded-full md:me-0 focus:ring-4 focus:ring-zinc-600 mr-2"
           onClick={() => setIsOpen(!isOpen)}
           >
-              <span className="sr-only">Open user menu</span>
-              <Image
-                src="/1.jpg"
-                alt='user photo'
-                height={32}
-                width={32}
-                className='w-8 h-8 rounded-full object-cover object-center'
-              />
-            </button>
-            <LanguageSwitchButton/>
+            <Image
+              src="/1.jpg"
+              alt='user photo'
+              height={32}
+              width={32}
+              className='w-8 h-8 rounded-full object-cover object-center'
+            />
+          </button>
+          <LanguageSwitchButton/>
         </div>
         </div>
       </nav>
@@ -58,20 +65,20 @@ const Navbar = () => {
           </div>
           <ul className="py-2 text-xs font-semibold">
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">Profile</Link>
+              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{Profile}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">User Settings</Link>
+              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{Settings}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 pt-2 pb-4 hover:bg-zinc-600 text-zinc-200 hover:text-white">Log Out</Link>
+              <Link href="#" className="block px-4 pt-2 pb-4 hover:bg-zinc-600 text-zinc-200 hover:text-white">{Logout}</Link>
             </li>
             <hr className=''/>
             <li>
-              <Link href="#" className="block px-4 pb-2 pt-4 hover:bg-zinc-600 text-zinc-200 hover:text-white">Contact Us</Link>
+              <Link href="#" className="block px-4 pb-2 pt-4 hover:bg-zinc-600 text-zinc-200 hover:text-white">{ContactLink}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">Source</Link>
+              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{SourceLink}</Link>
             </li>
         </ul>
         </div>

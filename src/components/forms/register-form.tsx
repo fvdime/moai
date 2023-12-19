@@ -20,45 +20,30 @@ password, registerButtonLabel, registerFooterLabel, registerFooterLink}: Registe
 
   return (
     <div className="flex flex-row justify-center items-center h-full w-screen text-white">
-      <div className="h-full w-1/5 bg-black p-4">
+      <div className="hidden md:flex h-full w-3/12 bg-black p-4">
       </div>
-      <form className="h-full w-full md:w-3/5 py-16 px-4 md:px-16 bg-zinc-900 flex flex-col justify-center">
+      <form className="h-full w-full md:w-6/12 py-16 px-8 md:px-16 bg-zinc-900 flex flex-col justify-center">
         <div className="flex items-center justify-center mb-5">
           <p className="text-3xl font-medium">
             {registerHeader}
           </p>
         </div>
         <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300"></div>
-          <div className="grid md:grid-cols-2 md:gap-6">
-            <div className="mb-4">
-              <label
-                htmlFor="name"
-                className="block mb-2 text-sm font-medium"
-              >
-                {name}
-              </label>
+          <div className="mb-4">
+          <label
+            htmlFor="email"
+            className="block mb-2 text-sm font-medium"
+          >
+            {username}
+          </label>
 
-              <Input
-                placeholder={name}
-                // disabled={}
-                type="password"
-                />
-            </div>
-            <div className="mb-4">
-              <label
-                htmlFor="username"
-                className="block mb-2 text-sm font-medium"
-              >
-                {username}
-              </label>
+          <Input
+            placeholder={username}
+            // disabled={}
+            type="text"
+            />
+        </div>
 
-              <Input
-                placeholder={username}
-                // disabled={}
-                type="text"
-              />
-            </div>
-          </div>
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -107,7 +92,7 @@ password, registerButtonLabel, registerFooterLabel, registerFooterLink}: Registe
           </Link>
         </p>
       </form>
-      <div className="h-screen w-1/5 bg-zinc-900"></div>
+      <div className="hidden md:flex h-screen w-3/12 bg-zinc-900"></div>
     </div>
   );
 };
