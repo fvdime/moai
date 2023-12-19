@@ -14,6 +14,28 @@
       "RegisterFooterLabel": "Already have an account?",
       "LoginFooterLink": "Sign up",
       "RegisterFooterLink": "Sign In"
+    },
+    "LandingPage": {
+      "AboutUsTitle": "A platform for everybody",
+      "AboutUs": ".moai. is a social platform created with inspiration from our users. It's open source, free, and allows you to ask any question in your mind.",
+      "Title": "Get Started！",
+      "LoginButton": "Log In",
+      "RegisterButton": "Register",
+      "FooterAboutLink": "About Us",
+      "FooterContactLink": "Contact Us",
+      "FooterSourceLink": "Source Code"
+    },
+    "FeedPage": {
+      "Navbar": {
+        "Search": "Search...",
+        "Modal": {
+          "Profile": "Profile",
+          "Settings": "User Settings",
+          "Logout": "Log Out",
+          "ContactLink": "Contact Us",
+          "SourceLink": "Source Code"
+        }
+      }
     }
   }
 }
