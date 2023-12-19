@@ -3,6 +3,7 @@ import httpStatus from 'http-status';
 import { ErrorParams } from './types';
 
 export default function errorHandler(err: ErrorParams) {
+    console.log(err);
     let statusCode = err?.statusCode || httpStatus.INTERNAL_SERVER_ERROR;
     let resMessage = err?.message || 'Internal Server Error';
     if (!err?.error)
