@@ -17,7 +17,7 @@ export default async function middleware(request: NextRequest) {
 
     const defaultLocale = request.headers.get('x-your-custom-locale') || 'en';
     const handleI18nRouting = createIntlMiddleware({
-        locales: ['en', 'de', 'es', 'jp'],
+        locales: ['en', 'de', 'es', 'ja'],
         defaultLocale,
     });
     const response = handleI18nRouting(request);
@@ -84,12 +84,15 @@ export default async function middleware(request: NextRequest) {
 export const config = {
     matcher: [
         '/',
-        '/(en|de|es|jp)/:path*',
+        '/(en|de|es|ja)/:path*',
         '/api/topics/create',
         '/api/topics/delete/:path*',
         '/api/topics/update/:path*',
         '/api/posts/create',
         '/api/posts/delete/:path*',
+        '/api/comments/delete/:path*',
+        '/api/comments/create',
+        '/api/bookmarks/create',
         '/api/users',
         '/api/users/profileimage',
     ],
