@@ -3,7 +3,7 @@ import httpStatus from 'http-status';
 import error from '@/libs/error-handler';
 import { z } from 'zod';
 import { GetUserById } from '@/services/user';
-import { CreateBookmark } from '@/services/bookmark';
+import { CreateBookmark, GetBookmark } from '@/services/bookmark';
 
 const createSchema = z.object({
     postId: z.string(),
@@ -24,6 +24,17 @@ export async function POST(req: NextRequest) {
                 statusCode: httpStatus.BAD_REQUEST,
             });
         }
+
+        const existBookmark = await GetBookmark({
+            userId: user.id,
+            postId: isValidData.postId,
+        });
+
+        if (existBookmark)
+            return NextResponse.json(
+                { success: true, bookmark: existBookmark },
+                { status: httpStatus.CREATED }
+            );
 
         const bookmark = await CreateBookmark({
             ...isValidData,

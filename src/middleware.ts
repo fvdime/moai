@@ -93,6 +93,7 @@ export const config = {
         '/api/comments/delete/:path*',
         '/api/comments/create',
         '/api/bookmarks/create',
+        '/api/bookmarks',
         '/api/users',
         '/api/users/profileimage',
     ],
