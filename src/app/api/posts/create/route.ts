@@ -7,7 +7,7 @@ import { CreatePost } from '@/services/post';
 import uploadImage from '@/libs/upload-image';
 
 const createSchema = z.object({
-    body: z.string().min(3),
+    body: z.string().min(1),
     topicId: z.string(),
 });
 

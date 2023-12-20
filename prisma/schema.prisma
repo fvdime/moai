@@ -23,21 +23,34 @@ model User {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  posts     Post[]
-  comments  Comment[]
-  topics    Topic[]
-  bookmarks Bookmark[]
+  posts       Post[]
+  comments    Comment[]
+  topics      Topic[]
+  bookmarks   Bookmark[]
+  FollowTopic FollowTopic[]
 }
 
 model Topic {
+  id          String        @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  userId      String        @db.ObjectId
+  published   Boolean       @default(true)
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  posts       Post[]
+  FollowTopic FollowTopic[]
+}
+
+model FollowTopic {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  title     String
+  userId    String   @db.ObjectId
+  topicId   String   @db.ObjectId
+  published Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  userId    String   @db.ObjectId
-  published Boolean  @default(true)
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  posts     Post[]
+  topic     Topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
 }
 
 model Post {
