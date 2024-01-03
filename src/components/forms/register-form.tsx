@@ -1,6 +1,6 @@
 "use client";
 
-import {Link, useRouter} from "../navigation-link";
+import { Link, useRouter } from "../navigation-link";
 import Button from "../button";
 import Input from "../input";
 // import { useRouter } from "next/navigation";
@@ -26,8 +26,8 @@ type InitialValues = {
   password: string;
 }
 
-const RegisterForm = ({registerHeader, username, email, 
-password, registerButtonLabel, registerFooterLabel, registerFooterLink}: RegisterProps) => {
+const RegisterForm = ({ registerHeader, username, email,
+  password, registerButtonLabel, registerFooterLabel, registerFooterLink }: RegisterProps) => {
 
   const initialValues: InitialValues = {
     username: "",
@@ -40,7 +40,7 @@ password, registerButtonLabel, registerFooterLabel, registerFooterLink}: Registe
   const onSubmit = (values: InitialValues, actions: { resetForm: () => void; setSubmitting: (arg0: boolean) => void }) => {
     console.log(values)
     axios.post("/api/auth/register", values).then((res) => {
-      console.log(values)
+      console.log(res.data.data)
       if (res.data?.success == true) {
         localStorage.setItem("user", JSON.stringify(res.data?.data))
         toast.success('Successfully!')
@@ -76,16 +76,16 @@ password, registerButtonLabel, registerFooterLabel, registerFooterLink}: Registe
     <div className="flex flex-row justify-center items-center h-full w-screen text-white">
       <div className="hidden md:flex h-full w-3/12 bg-black p-4">
       </div>
-      <form 
-      onSubmit={handleSubmit}
-      className="h-full w-full md:w-6/12 py-16 px-8 md:px-16 bg-zinc-900 flex flex-col justify-center">
+      <form
+        onSubmit={handleSubmit}
+        className="h-full w-full md:w-6/12 py-16 px-8 md:px-16 bg-zinc-900 flex flex-col justify-center">
         <div className="flex items-center justify-center mb-5">
           <p className="text-3xl font-medium">
             {registerHeader}
           </p>
         </div>
         <div className="my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300"></div>
-          <div className="mb-4">
+        <div className="mb-4">
           <label
             htmlFor="email"
             className="block mb-2 text-sm font-medium"
@@ -102,7 +102,7 @@ password, registerButtonLabel, registerFooterLabel, registerFooterLink}: Registe
             onBlur={handleBlur}
             name="username"
             id="username"
-            />
+          />
         </div>
 
         <div className="mb-4">
@@ -122,7 +122,7 @@ password, registerButtonLabel, registerFooterLabel, registerFooterLink}: Registe
             onBlur={handleBlur}
             name="email"
             id="email"
-            />
+          />
         </div>
 
         <div className="mb-8">
@@ -142,14 +142,14 @@ password, registerButtonLabel, registerFooterLabel, registerFooterLink}: Registe
             onBlur={handleBlur}
             name="password"
             id="password"
-            />
+          />
         </div>
         <Button
           label={registerButtonLabel}
           secondary
           fullWidth
           large
-          />
+        />
         <p className="mb-0 mt-4 pt-1 text-sm font-medium text-center">
           {registerFooterLabel}
           <Link
