@@ -3,7 +3,7 @@ import React from 'react'
 
 const CreatePage = () => {
   return (
-    <div className='w-full h-full'>CreatePage
+    <div className='w-full h-full'>
       <CreatePostModal />
     </div>
   )
