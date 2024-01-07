@@ -1,5 +1,6 @@
 import React from 'react'
 import Button from '../button'
+import CreatePostModal from '../forms/create-post'
 
 const HomePanel = () => {
   return (
@@ -13,11 +14,7 @@ const HomePanel = () => {
                 </p>
               </div>
               <div className="flex flex-col gap-2">
-                <Button
-                  label='Create Post'
-                  secondary
-                  fullWidth
-                />
+                <CreatePostModal/>
                 <Button
                   label='Create Topic'
                   fullWidth

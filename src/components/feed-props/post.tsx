@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import CodeBlock from "../post-props/code-block";
 
 const Post = () => {
   return (
@@ -80,7 +81,7 @@ const Post = () => {
               <span className="text-xs font-normal text-zinc-400">11:46</span>
               </div>
               <p className="text-md font-semibold text-white">This is the title</p>
-            <p className="text-sm font-normal py-2.5 text-zinc-300">Lorem !</p>
+            <CodeBlock/>
         </div>
       </div>
     </div>
