@@ -2,7 +2,7 @@
 
 import React, { useState, useCallback, useRef, Fragment } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import axios from 'axios'
+import Button from '../button';
 
 
 const CreatePostModal = () => {
@@ -14,11 +14,17 @@ const CreatePostModal = () => {
         // axios
     }
     return <>
-        <button type='button' onClick={() => setOpen(true)} className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      {/* <button type='button' onClick={() => setOpen(true)} className="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Create Post
-        </button>
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+        </button> */}
+      <Button
+        label='Create Post'
+        onClick={() => setOpen(true)}
+        fullWidth
+        secondary
+      />
+      <Transition.Root show={open} as={Fragment}>
+        <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -92,8 +98,8 @@ const CreatePostModal = () => {
                         </Transition.Child>
                     </div>
                 </div>
-            </Dialog>
-        </Transition.Root >
+          </Dialog>
+      </Transition.Root >
     </>
 }
 
