@@ -40,7 +40,8 @@ const getTopTopics = async () => {
 }
 
 const TopicPanel = async () => {
-  const topics = await getTopTopics();
+  // const topics = await getTopTopics();
+  const topics = [{ id: 1, title: "deneme" }, { id: 1, title: "deneme" }]
   return (
     <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700">
       <div className="flex items-center justify-between mb-4">

@@ -8,7 +8,8 @@ import uploadImage from '@/libs/upload-image';
 
 const createSchema = z.object({
     body: z.string().min(1),
-    topicId: z.string(),
+    // topicId: z.string(),
+    hashtags: z.string().nullish(),
 });
 
 export async function POST(req: NextRequest) {
@@ -17,8 +18,12 @@ export async function POST(req: NextRequest) {
 
         const isValidData = createSchema.parse({
             body: formData.get('body'),
-            topicId: formData.get('topicId'),
+            // topicId: formData.get('topicId'),
+            hashtags: formData.get('hashtags'),
         });
+
+        console.log(isValidData);
+
         const id = req.headers.get('id') || '';
 
         const user = await GetUserById(id);
@@ -41,10 +46,13 @@ export async function POST(req: NextRequest) {
                 filePath = response.filePath;
         }
 
+        const hashtags = isValidData.hashtags?.split(',');
+
         const post = await CreatePost({
-            ...isValidData,
+            body: isValidData.body,
             userId: user.id,
             image: filePath,
+            hashtags: hashtags || [],
         });
 
         return NextResponse.json(
