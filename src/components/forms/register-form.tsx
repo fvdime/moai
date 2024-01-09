@@ -44,8 +44,7 @@ const RegisterForm = ({ registerHeader, username, email,
       if (res.data?.success == true) {
         localStorage.setItem("user", JSON.stringify(res.data?.data))
         toast.success('Successfully!')
-        setTimeout(() => router.push("/feed"), 250)
-        // router.push("/");
+        router.push("/feed")
       } else {
         actions.resetForm();
         toast.error('Permission denied!')

@@ -9,7 +9,7 @@ import uploadImage from '@/libs/upload-image';
 
 export async function POST(req: NextRequest) {
     try {
-        // const userId = String(req?.headers.get('userId'));
+        const userId = String(req?.headers.get('id'));
 
         const formData = await req.formData();
         const fileData = formData.get('image');
@@ -18,38 +18,36 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: true });
         }
 
-        const res = uploadImage({
+        const res: any = await uploadImage({
             file: fileData,
         });
 
-        console.log(res);
+        console.log(res?.result?.$metadata?.httpStatusCode);
 
-        // if (res['$metadata']?.httpStatusCode != 200) {
-        //     return NextResponse.json(
-        //         { success: false },
-        //         { status: httpStatus.BAD_REQUEST }
-        //     );
-        // }
+        if (res?.result?.$metadata?.httpStatusCode != 200) {
+            return NextResponse.json(
+                { success: false },
+                { status: httpStatus.BAD_REQUEST }
+            );
+        }
 
-        // const updateUser = await prisma.user.update({
-        //     where: {
-        //         id: userId,
-        //     },
-        //     data: {
-        //         profileImage: fileName,
-        //     },
-        //     select: {
-        //         bio: true,
-        //         profileImage: true,
-        //         id: true,
-        //         email: true,
-        //         username: true,
-        //     },
-        // });
+        const updateUser = await prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                profileImage: res.filePath,
+            },
+            select: {
+                bio: true,
+                profileImage: true,
+                id: true,
+                email: true,
+                username: true,
+            },
+        });
 
-        // console.log(updateUser);
-
-        return NextResponse.json({ success: true /*user: updateUser*/ });
+        return NextResponse.json({ success: true, user: updateUser });
     } catch (err) {
         console.log(err);
         return error({

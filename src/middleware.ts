@@ -45,8 +45,6 @@ export default async function middleware(request: NextRequest) {
             );
         }
 
-        //console.log('pay', payload);
-
         return NextResponse.next({
             headers: {
                 id: String(payload?.id),
