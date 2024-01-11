@@ -34,7 +34,7 @@ const TextEditor = () => {
     "color",
   ];
   return (
-    <div className='placeholder:text-white'>
+    <div className='text-white placeholder:text-white'>
       {/* <ReactQuill
         theme="bubble"
         // value={body}

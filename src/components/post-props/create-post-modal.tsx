@@ -5,6 +5,7 @@ import React, { useCallback, useState } from 'react'
 import Input from '../input'
 import Modal from '../modal'
 import TextEditor from './text-editor'
+import TagInput from './tag-input'
 
 const PostModal = () => {
 
@@ -17,10 +18,7 @@ const PostModal = () => {
       type='text'
       />
       <TextEditor/>
-      <Input
-      placeholder='Tags'
-      type='text'
-      />
+      <TagInput/>
     </div>
     )
 
