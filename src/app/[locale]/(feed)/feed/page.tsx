@@ -1,5 +1,5 @@
-import Post from '@/components/feed-props/post'
 import React from 'react'
+import Post from '@/components/feed-props/post'
 
 export default async function Feed() {
 
