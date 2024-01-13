@@ -2,6 +2,7 @@ import prisma from '@/libs/prisma';
 
 export const CreatePost = async (post: {
     body: string;
+    title: string;
     // topicId: string;
     userId: string;
     image?: string;

@@ -4,7 +4,7 @@ import { verifyJwtToken } from '@/libs/auth';
 
 const AUTH_PAGES = ['/login', '/register'];
 
-const PROTECTED_PAGES = ['/profile'];
+const PROTECTED_PAGES = ['/profile', '/feed'];
 
 const isAuthPages = (url: string) =>
     AUTH_PAGES.some((page) => page.startsWith(url));
@@ -74,7 +74,9 @@ export default async function middleware(request: NextRequest) {
         return response;
     }
 
-    // if (typeof payload.id == 'string') response.headers.set('id', payload?.id);
+    console.log(String(payload?.id));
+
+    response.headers.set('id', String(payload?.id));
 
     return response;
 }

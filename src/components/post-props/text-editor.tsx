@@ -3,7 +3,7 @@
 import React from 'react'
 import "react-quill/dist/quill.snow.css";
 
-const TextEditor = () => {
+const TextEditor = ({ text, SetText }: any) => {
 
   const ReactQuill = typeof window === 'object' ? require('react-quill') : () => false;
 
@@ -46,8 +46,8 @@ const TextEditor = () => {
       /> */}
       <ReactQuill
         theme="snow"
-        // value={content}
-        // onChange={setContent}
+        value={text}
+        onChange={SetText}
         modules={modules}
         formats={formats}
       />

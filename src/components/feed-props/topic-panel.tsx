@@ -4,44 +4,44 @@ import prisma from '@/libs/prisma'
 import Link from 'next/link'
 import React from 'react'
 
-const getTopTopics = async () => {
-  const currentDateMinusOneDay = new Date();
-  currentDateMinusOneDay.setDate(currentDateMinusOneDay.getDate() - 1)
+// const getTopTopics = async () => {
+//   const currentDateMinusOneDay = new Date();
+//   currentDateMinusOneDay.setDate(currentDateMinusOneDay.getDate() - 1)
 
-  const result = await prisma.topic.findMany({
-    select: {
-      id: true,
-      title: true,
-      posts: {
-        select: {
-          id: true
-        },
-        where: {
-          createdAt: {
-            gte: currentDateMinusOneDay
-          }
-        }
-      }
-    },
-    orderBy: {
-      posts: {
-        _count: "desc"
-      }
-    },
-    take: 5
-  })
+//   const result = await prisma.topic.findMany({
+//     select: {
+//       id: true,
+//       title: true,
+//       posts: {
+//         select: {
+//           id: true
+//         },
+//         where: {
+//           createdAt: {
+//             gte: currentDateMinusOneDay
+//           }
+//         }
+//       }
+//     },
+//     orderBy: {
+//       posts: {
+//         _count: "desc"
+//       }
+//     },
+//     take: 5
+//   })
 
-  return result.map(x => {
-    return {
-      id: x.id,
-      title: x.title
-    }
-  })
-}
+//   return result.map(x => {
+//     return {
+//       id: x.id,
+//       title: x.title
+//     }
+//   })
+// }
 
 const TopicPanel = async () => {
   // const topics = await getTopTopics();
-  const topics = [{ id: 1, title: "deneme" }, { id: 1, title: "deneme" }]
+  const topics = [{ id: 1, title: "deneme" }, { id: 2, title: "deneme" }]
   return (
     <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700">
       <div className="flex items-center justify-between mb-4">
