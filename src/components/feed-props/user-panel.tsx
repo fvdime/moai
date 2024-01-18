@@ -1,8 +1,9 @@
 import React from 'react'
 import Button from '../button'
 import Image from 'next/image'
+import { UserParams } from '@/libs/types'
 
-const UserPanel = () => {
+const UserPanel = ({username, profilePic}: any) => {
   return (
     <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700 flex flex-col gap-8">
       <div className="flex flex-col items-center justify-between gap-4">
@@ -14,7 +15,7 @@ const UserPanel = () => {
           className='w-24 h-24 rounded-full object-cover'
         />
         <p className="text-lg font-semibold text-zinc-100">
-          UserName
+          {username}
         </p>
         <Button
           label='Change Profile Pic'

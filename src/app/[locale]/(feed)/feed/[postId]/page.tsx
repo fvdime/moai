@@ -81,7 +81,7 @@ const PostPage = async ({params}: any) => {
           </div>
         </article>
       </div>
-      <CommentSection/>
+      <CommentSection id={id}/>
     </main>
   )
 }
