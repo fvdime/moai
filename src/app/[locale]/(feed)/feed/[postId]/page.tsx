@@ -6,13 +6,28 @@ import React from 'react'
 import Parser from 'html-react-parser';
 import { JSDOM } from 'jsdom'
 import CodeBlock from '@/components/post-props/code-block'
+import CommentForm from '@/components/forms/comment-form'
+
+const getComments = async (postId: string) => {
+  const res = await fetch(process.env.NEXT_PUBLIC_API_BASE + `comments/${postId}`)
+
+  if (!res.ok) {
+    return <></>
+  }
+
+  return res.json()
+}
 
 
-const PostPage = async ({params}: any) => {
+const PostPage = async ({params}: {params: {postId: string}}) => {
 
   const id = params?.postId
+  // console.log("POST ID:::::",id)
 
-  // console.log(id)
+  const commentsData = await getComments(id)
+  // console.log(commentsData)
+
+  // console.log(commentsData.comments[0].body)
 
   const postInfo = await SinglePost(id)
 
@@ -26,6 +41,13 @@ const PostPage = async ({params}: any) => {
 
   const formattedTime = `${dateObject.getHours().toString().padStart(2, '0')}:${dateObject.getMinutes().toString().padStart(2, '0')}`;
 
+  const commentTimestamp = commentsData?.comments[0].createdAt
+  const commentDateObject = new Date(commentTimestamp!);
+
+  const cOptions = { month: 'short', day: '2-digit' } as const;
+  const cFormattedDate = new Intl.DateTimeFormat('en-US', cOptions).format(commentDateObject);
+
+  const cFormattedTime = `${commentDateObject.getHours().toString().padStart(2, '0')}:${commentDateObject.getMinutes().toString().padStart(2, '0')}`;
   // console.log(formattedDate, formattedTime);
 
   function containsPreTag(htmlString: string) {
@@ -81,7 +103,34 @@ const PostPage = async ({params}: any) => {
           </div>
         </article>
       </div>
-      <CommentSection id={id}/>
+      {/* COMMENT SECTION */}
+      <div className="my-8 p-6 bg-zinc-900 rounded leading-1.5 border border-zinc-700">
+      <h2 className="text-md font-bold mb-4 border-b py-2 border-zinc-600">Discussion</h2>
+      <CommentForm postId={id}/>
+      <div>
+        {/* @ts-ignore */}
+        {commentsData.comments.map((item) => (
+          <article className="py-4 border-t border-zinc-700" key={item.id}>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
+                <Image
+                  src="/1.jpg"
+                  alt='user photo'
+                  height={24}
+                  width={24}
+                  className='w-6 h-6 rounded-full object-cover object-center mr-2'
+                />
+                  some user
+                </p> 
+                <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p>
+              </div>
+            </div>
+            <p className='text-white text-sm'>{item.body}</p> 
+          </article>
+          ))}
+      </div>
+    </div>
     </main>
   )
 }

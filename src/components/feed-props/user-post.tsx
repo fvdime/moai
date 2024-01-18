@@ -2,20 +2,21 @@ import { DeletePost } from "@/services/post";
 import { GetUserById } from "@/services/user";
 import axios from "axios";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/components/navigation-link";
 import React from "react";
+import DeleteButton from "./delete-button";
 
 const UserPost = async ({post, user}: any) => {
 
   const userCreatedAt = new Date(post.createdAt);
   const formattedTime = userCreatedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-  const postId = post.id
-  console.log(postId)
+  // const postId = post.id
+  // console.log("post id:::::::",postId)
 
   return (
     <div className="w-full"> 
-      <Link href="/">
+      <Link href={`/feed/${post.id}`}>
         <div className="flex items-start gap-2.5">
           <Image
             src="/1.jpg"
@@ -44,6 +45,7 @@ const UserPost = async ({post, user}: any) => {
                <></>
               }
               <div className="mb-2">
+                {/* @ts-ignore */}
                 {post?.hashtags.map((item, index) => (
                   <span className="text-xs text-gray-400 pr-2" key={index}>
                     {item === null ? "" : `#${item}`}
@@ -72,11 +74,7 @@ const UserPost = async ({post, user}: any) => {
                       <path d="M12 0H2C1.46957 0 0.960859 0.210714 0.585786 0.585786C0.210714 0.960859 0 1.46957 0 2V9C0 9.53043 0.210714 10.0391 0.585786 10.4142C0.960859 10.7893 1.46957 11 2 11H3V13C3 13.1857 3.05171 13.3678 3.14935 13.5257C3.24698 13.6837 3.38668 13.8114 3.55279 13.8944C3.71889 13.9775 3.90484 14.0126 4.08981 13.996C4.27477 13.9793 4.45143 13.9114 4.6 13.8L8.333 11H12C12.5304 11 13.0391 10.7893 13.4142 10.4142C13.7893 10.0391 14 9.53043 14 9V2C14 1.46957 13.7893 0.960859 13.4142 0.585786C13.0391 0.210714 12.5304 0 12 0Z" fill="currentColor"/>
                     </svg>
                   </button>
-                    <button>
-                    <svg className="w-4 h-4 hover:text-zinc-300 hover:shadow-lg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24" fill="currentColor">
-                      <path d="M20,6H17V5a3,3,0,0,0-3-3H10A3,3,0,0,0,7,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM9,5a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V6H9Zm8,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z"/><path d="M10,18a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0v6A1,1,0,0,1,10,18Z"/><path d="M14,18a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0v6A1,1,0,0,1,14,18Z"/>
-                      </svg>
-                    </button>
+                    <DeleteButton id={post.id}/>
                     <button>
                       <svg  className="hover:text-zinc-200" fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                     </button>
