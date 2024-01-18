@@ -6,9 +6,10 @@ import React from 'react'
 import Parser from 'html-react-parser';
 import { JSDOM } from 'jsdom'
 import CodeBlock from '@/components/post-props/code-block'
+import PostBody from '@/components/feed-props/post-body'
 
 
-const PostPage = async ({params}: any) => {
+const PostPage = async ({ params }: any) => {
 
   const id = params?.postId
 
@@ -17,7 +18,7 @@ const PostPage = async ({params}: any) => {
   const postInfo = await SinglePost(id)
 
   // console.log(postInfo)
-  
+
   const timestamp = postInfo?.createdAt
   const dateObject = new Date(timestamp!);
 
@@ -32,10 +33,13 @@ const PostPage = async ({params}: any) => {
     const dom = new JSDOM(htmlString);
     const preTags = dom.window.document.querySelectorAll('pre');
 
-  return preTags.length > 0;
+    return preTags.length > 0;
   }
 
-  console.log(containsPreTag(postInfo?.body!))
+  //console.log(containsPreTag(postInfo?.body!))
+
+
+
 
   return (
     <main className="antialiased text-white">
@@ -49,40 +53,74 @@ const PostPage = async ({params}: any) => {
                     src="/1.jpg"
                     alt='user photo'
                     height={32}
-                    width={32}                      className='w-8 h-8 rounded-full object-cover object-center'
+                    width={32} className='w-8 h-8 rounded-full object-cover object-center'
                   />
                 </Link>
                 <Link href={`/user/${postInfo?.userId}`}>
                   <span className="text-sm font-bold hover:underline">username</span>
-                </Link>                    
+                </Link>
               </div>
               <span className="text-xs font-normal text-zinc-400">{formattedDate}, {formattedTime}</span>
             </address>
             <h1 className="mb-4 text-xl font-extrabold leading-tight lg:mb-6 lg:text-2xl text-white">{postInfo?.title}</h1>
           </div>
-          {containsPreTag(postInfo?.body!) === true ? 
-           ( 
-            <CodeBlock
-            // CodeString={postInfo?.body!}
-            />
-          ) : 
-          (
-            <div className='text-sm'>
-            {/* <p>{postInfo?.body}</p> */}
-            {Parser(postInfo!.body)}
-            </div>  
-          )
-          }
-          
+
+          {/* <CodeBlock text={
+            `const CreatePage = () => {
+                return (
+                  <div className='w-full h-full'>
+                    <CreatePostModal />
+                    <div>
+                      <SyntaxHighlighter language="javascript" style={docco}>
+                      {codeString}
+                      </SyntaxHighlighter>
+                    </div>
+                  </div>
+                )
+              }
+              
+              export default CreatePage`
+          } /> */}
+
+
+          {/* {containsPreTag(postInfo?.body!) === true ?
+            (
+              <CodeBlock text={
+                `const CreatePage = () => {
+                return (
+                  <div className='w-full h-full'>
+                    <CreatePostModal />
+                    <div>
+                      <SyntaxHighlighter language="javascript" style={docco}>
+                      {codeString}
+                      </SyntaxHighlighter>
+                    </div>
+                  </div>
+                )
+              }
+              
+              export default CreatePage`
+              }
+              // CodeString={postInfo?.body!}
+              />
+            ) :
+            (
+              <div className='text-sm'>
+          {Parser(postInfo!.body)}
+      </div>
+      )
+          } */}
+
+          <PostBody text={postInfo?.body || ""} />
           <div className='text-gray-300 text-xs mt-4 flex flex-row items-center gap-2'>
             {postInfo?.hashtags.map((item, index) => (
               <span key={index}>#{item}</span>
-              ))}
+            ))}
           </div>
         </article>
-      </div>
-      <CommentSection/>
-    </main>
+      </div >
+      <CommentSection />
+    </main >
   )
 }
 

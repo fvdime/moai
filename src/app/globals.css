@@ -1,3 +1,14 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.ql-syntax {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    color: #1d5075;
+}

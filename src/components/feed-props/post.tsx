@@ -22,6 +22,7 @@ interface Prop {
 const Post = ({ post }: Prop) => {
 
   const { id, title, body, image, createdAt, updatedAt, hashtags, userId } = post || {};
+  console.log(body)
   return (
     <div className="w-full">
       <div className="flex items-start gap-2.5">
@@ -105,7 +106,24 @@ const Post = ({ post }: Prop) => {
             <span className="text-xs font-normal text-zinc-400">11:46</span>
           </div>
           <p className="text-md font-semibold text-white">This is the title</p>
-          <CodeBlock />
+          defefhjbn
+          <CodeBlock text={
+            `const CreatePage = () => {
+              return (
+                <div className='w-full h-full'>
+                  <CreatePostModal />
+                  <div>
+                    <SyntaxHighlighter language="javascript" style={docco}>
+                    {codeString}
+                    </SyntaxHighlighter>
+                  </div>
+                </div>
+              )
+            }
+            
+            export default CreatePage`
+          } />
+          hhgvhcgx
         </div>
       </div>
     </div>
