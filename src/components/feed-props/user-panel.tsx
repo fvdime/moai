@@ -1,14 +1,21 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import Button from '../button'
 import Image from 'next/image'
 import { UserParams } from '@/libs/types'
 import { useState, useRef } from 'react'
 import toast, { Toaster } from "react-hot-toast"
 import axios from 'axios'
+import useUserState from '@/hooks/useUserState'
 
 const UserPanel = ({ username, profilePic }: any) => {
-  const [image, SetImage] = useState(profilePic);
+
+  const image: any = useUserState((state) => state.image)
+  const setImage: any = useUserState((state) => state.setImage)
+
+  console.log(profilePic)
+
+  // const [image, SetImage] = useState(profilePic);
   const fileInputRef = useRef(null);
   const handleButtonClick = () => {
     //@ts-ignore
@@ -24,7 +31,7 @@ const UserPanel = ({ username, profilePic }: any) => {
       .post('/api/users/profileimage', formData)
       .then((res: any) => {
         if (res.data?.success) {
-          SetImage(res.data?.user?.profileImage)
+          setImage(res.data?.user?.profileImage)
           toast.success('Successfully!')
         } else {
           toast.error('Process Error')

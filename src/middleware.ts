@@ -105,5 +105,6 @@ export const config = {
         '/api/bookmarks',
         '/api/users',
         '/api/users/profileimage',
+        '/api/users/getuserbytoken',
     ],
 };
