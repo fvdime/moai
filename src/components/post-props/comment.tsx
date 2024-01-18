@@ -4,9 +4,9 @@ import React from 'react'
 
 const Comment = async ({id}: any) => {
 
-  const comment = await GetAllCommentByPost(id)
+  // const comment = await GetAllCommentByPost(id)
   
-  console.log(comment)
+  // console.log(comment)
 
   return (
     <div>
@@ -26,12 +26,12 @@ const Comment = async ({id}: any) => {
             <p className="text-xs text-zinc-400"><time>Jan 16, 15:48</time></p>
           </div>
         </div>
-        {comment.map((item) => (
+        {/* {comment.map((item) => (
         <div key={item.id}>
-          <p className='text-white text-sm'>{item.body}</p> 
+          <p className='text-white text-sm'>{item.body}</p>  */}
           {/* <p className="text-xs text-zinc-400 w-full inline-flex items-end justify-end mt-4"><time>Jan 16, 15:48</time></p> */}
-        </div>
-        ))}
+        {/* </div>
+        ))} */}
         </article>
     </div>
   )
