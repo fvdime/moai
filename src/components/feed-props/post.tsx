@@ -1,11 +1,29 @@
 import Image from "next/image";
 import React from "react";
 import CodeBlock from "../post-props/code-block";
+import { Link } from "../navigation-link";
 
-const Post = () => {
+export interface PostProp {
+  id: string;
+  title: string;
+  image: string;
+  body: string;
+  userId: string;
+  hashtags?: string[];
+  createdAt: Date;
+  updatedAt?: Date;
+}
+
+interface Prop {
+  post: PostProp;
+  index: number;
+}
+
+const Post = ({ post }: Prop) => {
+
+  const { id, title, body, image, createdAt, updatedAt, hashtags, userId } = post || {};
   return (
-    <div className="
-    w-full">   
+    <div className="w-full">   
       <div className="flex items-start gap-2.5">
         <Image
           src="/1.jpg"
@@ -15,23 +33,29 @@ const Post = () => {
           className='w-8 h-8 rounded-full object-cover'
           />
         <div className="flex flex-col gap-1 w-full">
-            <div className="flex flex-col w-full leading-1.5 p-4 border border-zinc-700 rounded-e-xl rounded-es-xl bg-zinc-800 hover:border-zinc-500 ease-in transition-all duration-500">
-              <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse mb-2">
-                  <div className="text-xs font-bold">
-                    <span className="text-white">t/topic name</span>
-                    <span className="text-zinc-400"> - username</span>
-                  </div>
-                  <span className="text-xs font-normal text-zinc-400">11:46</span>
+          <div className="flex flex-col w-full leading-1.5 p-4 border border-zinc-700 rounded-e-xl rounded-es-xl bg-zinc-800 hover:border-zinc-500 ease-in transition-all duration-500">
+            <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse mb-2">
+              <div className="text-xs font-bold">
+                <span className="text-white">t/topic name</span>
+                <span className="text-zinc-400"> - username</span>
               </div>
-              <p className="text-md font-semibold text-white">This is the title</p>
-              <div className="w-full h-96 relative my-2.5">
-                  <Image 
-                  src="/1.jpg" 
-                  className="rounded object-cover object-center absolute"
+              <span className="text-xs font-normal text-zinc-400">11:46</span>
+            </div>
+            <Link href={`/feed/${id}`}><p className="text-md font-semibold text-white">{post.title}</p></Link>
+             
+            {post.image ?
+            <div className="w-full h-96 relative my-2.5">
+              <Link href={`/feed/${id}`}>
+                <Image
+                  // src={image}
+                  src="/1.jpg"
+                  alt='post photo'
                   fill
-                  alt="post image"
-                  />
-              </div>
+                  className='object-cover object-center'
+                />
+              </Link>
+            </div>
+            : null }
               <div className="w-full flex items-center justify-between">
                 <div className="flex gap-2 text-white">
                   <button>
