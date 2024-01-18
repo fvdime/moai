@@ -22,6 +22,16 @@ interface Prop {
 const Post = ({ post }: Prop) => {
 
   const { id, title, body, image, createdAt, updatedAt, hashtags, userId } = post || {};
+
+  const timestamp = createdAt
+  const dateObject = new Date(timestamp!);
+
+  const options = { month: 'short', day: '2-digit' } as const;
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(dateObject);
+
+  const formattedTime = `${dateObject.getHours().toString().padStart(2, '0')}:${dateObject.getMinutes().toString().padStart(2, '0')}`;
+
+
   return (
     <div className="w-full">
       <div className="flex items-start gap-2.5">
@@ -39,16 +49,15 @@ const Post = ({ post }: Prop) => {
                 <span className="text-white">t/topic name</span>
                 <span className="text-zinc-400"> - username</span>
               </div>
-              <span className="text-xs font-normal text-zinc-400">11:46</span>
+              <span className="text-xs font-normal text-zinc-400">{formattedDate}, {formattedTime}</span>
             </div>
-            <Link href={`/feed/${id}`}><p className="text-md font-semibold text-white">{post.title}</p></Link>
+            <Link href={`/feed/${id}`} className="truncate overflow-hidden w-5/6"><p className="text-md font-semibold text-white truncate">{post.title}</p></Link>
 
             {post.image ?
               <div className="w-full h-96 relative my-2.5">
                 <Link href={`/feed/${id}`}>
                   <Image
-                    // src={image}
-                    src="/1.jpg"
+                    src={process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${image}`}
                     alt='post photo'
                     fill
                     className='object-cover object-center'
@@ -56,7 +65,18 @@ const Post = ({ post }: Prop) => {
                 </Link>
               </div>
               : null}
-            <div className="w-full flex items-center justify-between">
+
+              {/* HASHTAGS */}
+              <div className="mb-2">
+                {/* @ts-ignore */}
+                {post?.hashtags.map((item, index) => (
+                  <span className="text-xs text-gray-400 pr-2" key={index}>
+                    {item === null ? "" : `#${item}`}
+                  </span>
+                ))}  
+              </div>
+
+            {/* <div className="w-full flex items-center justify-between">
               <div className="flex gap-2 text-white">
                 <button>
                   <svg className="w-4 h-4 hover:text-sky-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
@@ -83,12 +103,13 @@ const Post = ({ post }: Prop) => {
                   </svg>
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
 
-      <div className="flex items-start gap-2.5 mt-4">
+      {/* POST W/ CODE BLOCK */}
+      {/* <div className="flex items-start gap-2.5 mt-4">
         <Image
           src="/1.jpg"
           alt='user photo'
@@ -107,7 +128,7 @@ const Post = ({ post }: Prop) => {
           <p className="text-md font-semibold text-white">This is the title</p>
           <CodeBlock />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

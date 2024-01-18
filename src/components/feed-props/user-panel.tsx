@@ -1,5 +1,6 @@
 "use client"
-import React, { useEffect } from 'react'
+
+import React, { useEffect, useCallback  } from 'react'
 import Button from '../button'
 import Image from 'next/image'
 import { UserParams } from '@/libs/types'
@@ -7,9 +8,17 @@ import { useState, useRef } from 'react'
 import toast, { Toaster } from "react-hot-toast"
 import axios from 'axios'
 import useUserState from '@/hooks/useUserState'
+import useSettingsModal from '@/hooks/useSettingsModal'
 
 const UserPanel = ({ username, profilePic }: any) => {
 
+  const SettingsModal = useSettingsModal()
+
+  const handleClick = useCallback(() => {
+    SettingsModal.onOpen()
+  }, [SettingsModal])
+
+  
   const image: any = useUserState((state) => state.image)
   const setImage: any = useUserState((state) => state.setImage)
 
@@ -41,11 +50,12 @@ const UserPanel = ({ username, profilePic }: any) => {
         toast.error('Process Error')
       });
   };
+  
   return (
     <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700 flex flex-col gap-8">
       <div className="flex flex-col items-center justify-between gap-4">
         <Image
-          src={image ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${image}` : "/1.jpg"}
+          src={image ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${profilePic}` : "/1.jpg"}
           alt='user photo'
           height={96}
           width={96}
@@ -72,12 +82,8 @@ const UserPanel = ({ username, profilePic }: any) => {
       <div className="flex flex-col gap-2">
         <Button
           label='Settings'
-          secondary
           fullWidth
-        />
-        <Button
-          label='Settings'
-          fullWidth
+          onClick={handleClick}
         />
       </div>
       <Toaster position="top-right"
