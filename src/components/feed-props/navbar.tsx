@@ -24,7 +24,7 @@ const Navbar = ({Search, Profile, Settings, Logout, ContactLink, SourceLink}: Na
         <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
             <span className="self-center text-md font-bold whitespace-nowrap text-white">.moai.</span>
         </Link>
-        <div>
+        {/* <div>
           <button type="button" className="md:hidden text-zinc-400 hover:bg-zinc-700 focus:outline-none focus:ring-4 focus:ring-zinc-700 rounded-lg text-sm p-2.5 me-1">
               <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
@@ -40,7 +40,7 @@ const Navbar = ({Search, Profile, Settings, Logout, ContactLink, SourceLink}: Na
               </div>
               <input type="text" className="block w-full py-2 px-4 ps-10 text-xs border rounded-lg bg-zinc-700 border-zinc-600 placeholder-zinc-400 text-white focus:ring-blue-500 focus:border-blue-500" placeholder={Search} />
             </div>
-        </div>
+        </div> */}
         <div className="flex flex-row items-center gap-2 md:gap-4 rtl:space-x-reverse">
           <button type="button" className="flex text-sm bg-zinc-800 rounded-full md:me-0 focus:ring-4 focus:ring-zinc-600 mr-2"
           onClick={() => setIsOpen(!isOpen)}
@@ -70,20 +70,20 @@ const Navbar = ({Search, Profile, Settings, Logout, ContactLink, SourceLink}: Na
           </div>
           <ul className="py-2 text-xs font-semibold">
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{Profile}</Link>
+              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Profile}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{Settings}</Link>
+              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Settings}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 pt-2 pb-4 hover:bg-zinc-600 text-zinc-200 hover:text-white">{Logout}</Link>
+              <Link href="#" className="block px-4 py-2 mb-4 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Logout}</Link>
             </li>
             <hr className=''/>
             <li>
-              <Link href="#" className="block px-4 pb-2 pt-4 hover:bg-zinc-600 text-zinc-200 hover:text-white">{ContactLink}</Link>
+              <Link href="#" className="block px-4 py-2 mt-4 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{ContactLink}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white">{SourceLink}</Link>
+              <Link href="https://github.com/fvdime/moai" target='blank' className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{SourceLink}</Link>
             </li>
           </ul>
         </div>

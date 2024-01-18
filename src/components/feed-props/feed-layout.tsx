@@ -5,7 +5,7 @@ import React from "react";
 import { UserParams } from "@/libs/types";
 
 
-const FeedLayout = ({children, isUserPage, user}: {children:React.ReactNode, isUserPage: Boolean, user: UserParams}) => {
+const FeedLayout = ({children, isUserPage, user}: {children:React.ReactNode, isUserPage: Boolean, user?: UserParams}) => {
   return (
     <>
       <div className="max-w-screen-lg mx-auto">

@@ -41,13 +41,13 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
 
   const formattedTime = `${dateObject.getHours().toString().padStart(2, '0')}:${dateObject.getMinutes().toString().padStart(2, '0')}`;
 
-  const commentTimestamp = commentsData?.comments[0].createdAt
-  const commentDateObject = new Date(commentTimestamp!);
+  // const commentTimestamp = commentsData?.comments[0].createdAt
+  // const commentDateObject = new Date(commentTimestamp!);
 
-  const cOptions = { month: 'short', day: '2-digit' } as const;
-  const cFormattedDate = new Intl.DateTimeFormat('en-US', cOptions).format(commentDateObject);
+  // const cOptions = { month: 'short', day: '2-digit' } as const;
+  // const cFormattedDate = new Intl.DateTimeFormat('en-US', cOptions).format(commentDateObject);
 
-  const cFormattedTime = `${commentDateObject.getHours().toString().padStart(2, '0')}:${commentDateObject.getMinutes().toString().padStart(2, '0')}`;
+  // const cFormattedTime = `${commentDateObject.getHours().toString().padStart(2, '0')}:${commentDateObject.getMinutes().toString().padStart(2, '0')}`;
   // console.log(formattedDate, formattedTime);
 
   function containsPreTag(htmlString: string) {
@@ -81,6 +81,19 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
               <span className="text-xs font-normal text-zinc-400">{formattedDate}, {formattedTime}</span>
             </address>
             <h1 className="mb-4 text-xl font-extrabold leading-tight lg:mb-6 lg:text-2xl text-white">{postInfo?.title}</h1>
+
+            {postInfo?.image ?
+              <div className="w-full h-96 relative my-2.5">
+                <Link href={`/feed/${id}`}>
+                  <Image
+                    src={process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${postInfo.image}`}
+                    alt='post photo'
+                    fill
+                    className='object-cover object-center'
+                  />
+                </Link>
+              </div>
+              : null}
           </div>
           {containsPreTag(postInfo?.body!) === true ? 
            ( 
@@ -107,7 +120,8 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
       <div className="my-8 p-6 bg-zinc-900 rounded leading-1.5 border border-zinc-700">
       <h2 className="text-md font-bold mb-4 border-b py-2 border-zinc-600">Discussion</h2>
       <CommentForm postId={id}/>
-      <div>
+      {commentsData ? 
+        <div>
         {/* @ts-ignore */}
         {commentsData.comments.map((item) => (
           <article className="py-4 border-t border-zinc-700" key={item.id}>
@@ -123,7 +137,33 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
                 />
                   some user
                 </p> 
-                <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p>
+                {/* <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p> */}
+              </div>
+            </div>
+            <p className='text-white text-sm'>{item.body}</p> 
+          </article>
+          ))}
+      </div>
+      : 
+      <span>No comment</span>
+      }
+      <div>
+        {/* @ts-ignore */} 
+        {commentsData.comments.map((item) => (
+          <article className="py-4 border-t border-zinc-700" key={item.id}>
+            <div className="flex justify-between items-center mb-2">
+              <div className="flex items-center">
+                <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
+                <Image
+                  src="/1.jpg"
+                  alt='user photo'
+                  height={24}
+                  width={24}
+                  className='w-6 h-6 rounded-full object-cover object-center mr-2'
+                />
+                  some user
+                </p> 
+                {/* <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p> */}
               </div>
             </div>
             <p className='text-white text-sm'>{item.body}</p> 

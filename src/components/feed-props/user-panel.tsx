@@ -1,14 +1,25 @@
-import React from 'react'
+"use client"
+
+import React, { useCallback } from 'react'
 import Button from '../button'
 import Image from 'next/image'
-import { UserParams } from '@/libs/types'
+import useSettingsModal from '@/hooks/useSettingsModal'
+
 
 const UserPanel = ({username, profilePic}: any) => {
+
+  const SettingsModal = useSettingsModal()
+
+  const handleClick = useCallback(() => {
+    SettingsModal.onOpen()
+  }, [SettingsModal])
+
+
   return (
     <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700 flex flex-col gap-8">
       <div className="flex flex-col items-center justify-between gap-4">
         <Image
-          src={process.env.AWS_BUCKET_URL + "f137163d-f361-45fe-abf4-5f6660c44e854ce1e73920bd4401018a957ed8824ab62d63f.jpg"}
+          src={process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${profilePic}`}
           alt='user photo'
           height={96}
           width={96}
@@ -27,12 +38,8 @@ const UserPanel = ({username, profilePic}: any) => {
       <div className="flex flex-col gap-2">
         <Button
           label='Settings'
-          secondary
           fullWidth
-        />
-        <Button
-          label='Settings'
-          fullWidth
+          onClick={handleClick}
         />
       </div>
     </div>
