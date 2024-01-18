@@ -1,18 +1,33 @@
 "use client"
 
 import axios from 'axios'
-import React from 'react'
+import { useRouter } from 'next/navigation'
+import React, { useEffect } from 'react'
 
-const DeleteButton = ({postId}: any) => {
+const DeleteButton = ({id}: any) => {
 
+  const router = useRouter()
+
+  // console.log("POST IDDDDDDD: ",id)
+  
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/post/delete/${postId}`)
+      await axios.delete(`http://localhost:3000/api/posts/delete/${id}`).then()
       console.log("DELETED")
+
+      router.refresh()
+      
     } catch (error) {
       console.log("error", error)
     }
   }
+
+  useEffect(() => {
+  
+    return () => {
+    }
+  }, [])
+  
 
   return (
     <button onClick={handleDelete}>
