@@ -12,7 +12,7 @@ export default async function Feed() {
 
   const data = await prisma?.post.findMany()
   // const data = await GetAllPost()
-  console.log(data)
+  // console.log(data)
 
   return (
     <>
@@ -24,7 +24,7 @@ export default async function Feed() {
         {data.map((item: PostProp, index: number) => (
           <Post key={item.id} post={item} index={index} />
         ))}
-        <LoadMore/>
+        <LoadMore />
       </div>
     </>
   )
