@@ -14,3 +14,15 @@ export type UserParams = {
     profileImage?: string | null
     createdAt: Date
 }
+
+export type PostParams = {
+    id: string;
+    title: string;
+    body: string;
+    image: string | null;
+    createdAt: Date;
+    updatedAt: Date;
+    userId: string;
+    published: boolean;
+    hashtags: string[];
+}
