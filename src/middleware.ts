@@ -68,7 +68,7 @@ export default async function middleware(request: NextRequest) {
         const searchParams = new URLSearchParams(nextUrl.searchParams);
         searchParams.set('next', nextUrl.pathname);
         const response = NextResponse.redirect(
-            new URL(`/login?${searchParams}`, url)
+            new URL(`/en/login?${searchParams}`, url)
         );
         response.cookies.delete('token');
         return response;
