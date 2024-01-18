@@ -6,7 +6,7 @@ import { Link } from "@/components/navigation-link";
 import React from "react";
 import DeleteButton from "./delete-button";
 
-const UserPost = async ({post, user}: any) => {
+const UserPost = async ({ post, user, isOwnPage }: any) => {
 
   const userCreatedAt = new Date(post.createdAt);
   const formattedTime = userCreatedAt.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -27,22 +27,22 @@ const UserPost = async ({post, user}: any) => {
           />
           <div className="w-full flex flex-col gap-1">
             <div className="flex flex-col w-full leading-1.5 p-4 border border-zinc-700 rounded-e-xl rounded-es-xl bg-zinc-800 hover:border-zinc-500 ease-in transition-all duration-500">
-              <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse mb-2">                      
+              <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse mb-2">
                 <span className="text-white text-xs font-bold">- {user.username}</span>
                 <span className="text-xs font-normal text-zinc-400">{formattedTime}</span>
               </div>
               <p className="text-md font-semibold text-white">{post.title}</p>
-              {post.image ? 
+              {post.image ?
                 <div className="relative w-full h-96 my-2.5">
-                  <Image 
-                    src="/1.jpg" 
+                  <Image
+                    src="/1.jpg"
                     className="rounded absolute object-cover"
                     fill
                     alt="post image"
                   />
                 </div>
-               : 
-               <></>
+                :
+                <></>
               }
               <div className="mb-2">
                 {/* @ts-ignore */}
@@ -50,23 +50,24 @@ const UserPost = async ({post, user}: any) => {
                   <span className="text-xs text-gray-400 pr-2" key={index}>
                     {item === null ? "" : `#${item}`}
                   </span>
-                ))}  
-          
+                ))}
+
               </div>
               <div className="w-full flex items-center justify-between">
                 <div className="flex gap-2 text-white">
                   <button>
                     <svg className="w-4 h-4 hover:text-sky-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7" />
                     </svg>
                   </button>
                   <span className="text-xs">45</span>
                   <button>
                     <svg className="w-4 h-4 hover:text-red-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
-                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"/>
+                      <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
                     </svg>
                   </button>
                 </div>
+
                 <div className="flex gap-2 text-white">
                   <button>
                     <svg className="w-4 h-4 hover:text-zinc-300 hover:shadow-lg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 18" fill="currentColor">
@@ -76,11 +77,16 @@ const UserPost = async ({post, user}: any) => {
                   </button>
                     <DeleteButton id={post.id}/>
                     <button>
-                      <svg  className="hover:text-zinc-200" fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                      <svg className="w-4 h-4 hover:text-zinc-300 hover:shadow-lg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24" fill="currentColor">
+                        <path d="M20,6H17V5a3,3,0,0,0-3-3H10A3,3,0,0,0,7,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM9,5a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V6H9Zm8,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z" /><path d="M10,18a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0v6A1,1,0,0,1,10,18Z" /><path d="M14,18a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0v6A1,1,0,0,1,14,18Z" />
+                      </svg>
+                    </button>
+                    <button>
+                      <svg className="hover:text-zinc-200" fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
                     </button>
                   </div>
-                </div>
               </div>
+            </div>
           </div>
         </div>
       </Link>

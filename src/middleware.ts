@@ -74,7 +74,16 @@ export default async function middleware(request: NextRequest) {
         return response;
     }
 
-    console.log(String(payload?.id));
+    // console.log(String(payload?.id));
+
+    // const { value: token2 } = cookies.get('token') ?? {
+    //     value: null,
+    // };
+
+    // if (temp == '' && token2) {
+    //     const response = NextResponse.redirect(new URL(`/en/feed`, url));
+    //     return response;
+    // }
 
     response.headers.set('id', String(payload?.id));
 
@@ -96,5 +105,6 @@ export const config = {
         '/api/bookmarks',
         '/api/users',
         '/api/users/profileimage',
+        '/api/users/getuserbytoken',
     ],
 };
