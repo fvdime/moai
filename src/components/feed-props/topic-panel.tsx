@@ -4,41 +4,6 @@ import prisma from '@/libs/prisma'
 import Link from 'next/link'
 import React from 'react'
 
-// const getTopTopics = async () => {
-//   const currentDateMinusOneDay = new Date();
-//   currentDateMinusOneDay.setDate(currentDateMinusOneDay.getDate() - 1)
-
-//   const result = await prisma.topic.findMany({
-//     select: {
-//       id: true,
-//       title: true,
-//       posts: {
-//         select: {
-//           id: true
-//         },
-//         where: {
-//           createdAt: {
-//             gte: currentDateMinusOneDay
-//           }
-//         }
-//       }
-//     },
-//     orderBy: {
-//       posts: {
-//         _count: "desc"
-//       }
-//     },
-//     take: 5
-//   })
-
-//   return result.map(x => {
-//     return {
-//       id: x.id,
-//       title: x.title
-//     }
-//   })
-// }
-
 const TopicPanel = async () => {
   // const topics = await getTopTopics();
   const topics = [{ id: 1, title: "deneme" }, { id: 2, title: "deneme" }]

@@ -32,8 +32,6 @@ const Post = ({ post }: Prop) => {
 
   const formattedTime = `${dateObject.getHours().toString().padStart(2, '0')}:${dateObject.getMinutes().toString().padStart(2, '0')}`;
 
-  console.log(post)
-
   return (
     <div className="w-full">
       <div className="flex items-start gap-2.5">

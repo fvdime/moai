@@ -18,11 +18,7 @@ const UserProfilePage = async ({ params, }: any) => {
 
   const user = await GetUserById(id)
 
-  // console.log(user)
-
   const userPosts = await GetAllPostsByUser(id)
-
-  // console.log(userPosts)
 
   return (
     <FeedLayout isUserPage={true} user={user as UserParams}>

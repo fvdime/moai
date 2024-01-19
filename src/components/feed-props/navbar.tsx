@@ -6,6 +6,7 @@ import Image from 'next/image'
 import LanguageSwitcher from '../language-switcher'
 import useUserState from '@/hooks/useUserState'
 import axios from 'axios'
+import { useRouter } from '../navigation-link'
 
 type NavbarProps = {
   Search: string
@@ -17,12 +18,18 @@ type NavbarProps = {
 }
 
 const Navbar = ({ Search, Profile, Settings, Logout, ContactLink, SourceLink }: NavbarProps) => {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
 
-  const [user, SetUser] = useState({ profileImage: "", username: "", email: "" })
+  const [user, SetUser] = useState({ profileImage: "", username: "", email: "", id: "" })
 
   const image: any = useUserState((state) => state.image)
   const setImage: any = useUserState((state) => state.setImage)
+
+  const logout = async () => {
+    await fetch("/api/auth/logout")
+    router.push("/")
+  }
 
   useEffect(() => {
     axios.get("/api/users/getuserbytoken")
@@ -93,13 +100,13 @@ const Navbar = ({ Search, Profile, Settings, Logout, ContactLink, SourceLink }: 
           </div>
           <ul className="py-2 text-xs font-semibold">
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Profile}</Link>
+              <Link href={`/user/${user?.id}`} className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Profile}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Settings}</Link>
+              <Link href={`/user/${user?.id}`} className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Settings}</Link>
             </li>
             <li>
-              <Link href="#" className="block px-4 py-2 mb-4 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Logout}</Link>
+              <button onClick={logout} className="block px-4 py-2 mb-4 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{Logout}</button>
             </li>
             <hr className='' />
             <li>

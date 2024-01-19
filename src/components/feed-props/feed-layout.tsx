@@ -5,7 +5,7 @@ import React from "react";
 import { UserParams } from "@/libs/types";
 
 
-const FeedLayout = ({children, isUserPage, user}: {children:React.ReactNode, isUserPage: Boolean, user?: UserParams}) => {
+const FeedLayout = ({ children, isUserPage, user }: { children: React.ReactNode, isUserPage: Boolean, user?: UserParams }) => {
   return (
     <>
       <div className="max-w-screen-lg mx-auto">
@@ -14,20 +14,20 @@ const FeedLayout = ({children, isUserPage, user}: {children:React.ReactNode, isU
             {children}
           </div>
           <div className="hidden w-2/5 h-full lg:flex lg:flex-col gap-4">
-            {isUserPage === true ? 
-            <UserPanel
-            username={user?.username}
-            profilePic={user?.profileImage}
-            />
-            :
-            <>
-              {/* HOT TOPICS */}
-              <TopicPanel/>
-              {/* HOME */}
-              <HomePanel/>
-            </>
+            {isUserPage === true ?
+              <UserPanel
+                username={user?.username}
+                profilePic={user?.profileImage}
+              />
+              :
+              <>
+                {/* HOT TOPICS */}
+                {/* <TopicPanel/> */}
+                {/* HOME */}
+                <HomePanel />
+              </>
             }
-            {/* USER PROFILE */}    
+            {/* USER PROFILE */}
           </div>
         </div>
       </div>
