@@ -6,9 +6,12 @@ interface UserState {
 }
 
 const useUserState = create<UserState>((set) => ({
-    image: '806d6f70-056b-4f8d-8f3e-261abeacf4b0kenny.png',
+    image: '',
 
-    setImage: (image) => set(() => ({ image: image })),
+    setImage: (image) => {
+        console.log(image);
+        set(() => ({ image: image }));
+    },
 }));
 
 export default useUserState;
