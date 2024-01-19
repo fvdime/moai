@@ -27,9 +27,7 @@ const FeedLayout = ({children, isUserPage, user}: {children:React.ReactNode, isU
               <HomePanel/>
             </>
             }
-            {/* USER PROFILE */}
-            
-            
+            {/* USER PROFILE */}    
           </div>
         </div>
       </div>

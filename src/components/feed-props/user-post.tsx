@@ -53,8 +53,8 @@ const UserPost = async ({ post, user, isOwnPage }: any) => {
                 ))}
 
               </div>
-              <div className="w-full flex items-center justify-between">
-                <div className="flex gap-2 text-white">
+              <div className="w-full flex items-center justify-end">
+                {/* <div className="flex gap-2 text-white">
                   <button>
                     <svg className="w-4 h-4 hover:text-sky-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7" />
@@ -66,7 +66,7 @@ const UserPost = async ({ post, user, isOwnPage }: any) => {
                       <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1" />
                     </svg>
                   </button>
-                </div>
+                </div> */}
 
                 <div className="flex gap-2 text-white">
                   <button>
@@ -76,14 +76,9 @@ const UserPost = async ({ post, user, isOwnPage }: any) => {
                     </svg>
                   </button>
                     <DeleteButton id={post.id}/>
-                    <button>
-                      <svg className="w-4 h-4 hover:text-zinc-300 hover:shadow-lg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 24" fill="currentColor">
-                        <path d="M20,6H17V5a3,3,0,0,0-3-3H10A3,3,0,0,0,7,5V6H4A1,1,0,0,0,4,8H5V19a3,3,0,0,0,3,3h8a3,3,0,0,0,3-3V8h1a1,1,0,0,0,0-2ZM9,5a1,1,0,0,1,1-1h4a1,1,0,0,1,1,1V6H9Zm8,14a1,1,0,0,1-1,1H8a1,1,0,0,1-1-1V8H17Z" /><path d="M10,18a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0v6A1,1,0,0,1,10,18Z" /><path d="M14,18a1,1,0,0,1-1-1V11a1,1,0,0,1,2,0v6A1,1,0,0,1,14,18Z" />
-                      </svg>
-                    </button>
-                    <button>
+                    {/* <button>
                       <svg className="hover:text-zinc-200" fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
-                    </button>
+                    </button> */}
                   </div>
               </div>
             </div>

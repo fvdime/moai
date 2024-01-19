@@ -39,11 +39,9 @@ const LoadMore = () => {
 
   return (
     <>
-      <section>
         {data.map((item: PostProp, index: number) => (
           <Post key={item.id} post={item} index={index} />
         ))}
-      </section>
       <section ref={ref}>
         {inView && isLoading && (
           <div className="animate-bounce text-xs font-medium text-white">
