@@ -10,9 +10,16 @@ import { GetAllPost } from '@/services/post';
 export default async function Feed() {
   // const data = await fetchPosts(1);
 
-  const data = await prisma?.post.findMany()
+  const data = await prisma?.post.findMany({
+    take: 8,
+    include: {
+      user: true
+    }
+  })
   // const data = await GetAllPost()
   // console.log(data)
+
+  console.log(data)
 
   return (
     <>

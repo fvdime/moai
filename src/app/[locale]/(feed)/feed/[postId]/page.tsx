@@ -18,7 +18,7 @@ const getComments = async (postId: string) => {
 }
 
 
-const PostPage = async ({params}: {params: {postId: string}}) => {
+const PostPage = async ({ params }: { params: { postId: string } }) => {
   const id = params?.postId
   // console.log("POST ID:::::",id)
 
@@ -30,7 +30,7 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
   const postInfo = await SinglePost(id)
 
   // console.log(postInfo)
-  
+
   const timestamp = postInfo?.createdAt
   const dateObject = new Date(timestamp!);
 
@@ -52,7 +52,7 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
     const dom = new JSDOM(htmlString);
     const preTags = dom.window.document.querySelectorAll('pre');
 
-  return preTags.length > 0;
+    return preTags.length > 0;
   }
 
   // console.log(containsPreTag(postInfo?.body!))
@@ -69,12 +69,12 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
                     src="/1.jpg"
                     alt='user photo'
                     height={32}
-                    width={32}                      className='w-8 h-8 rounded-full object-cover object-center'
+                    width={32} className='w-8 h-8 rounded-full object-cover object-center'
                   />
                 </Link>
                 <Link href={`/user/${postInfo?.userId}`}>
                   <span className="text-sm font-bold hover:underline">username</span>
-                </Link>                    
+                </Link>
               </div>
               <span className="text-xs font-normal text-zinc-400">{formattedDate}, {formattedTime}</span>
             </address>
@@ -93,82 +93,61 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
               </div>
               : null}
           </div>
-          {containsPreTag(postInfo?.body!) === true ? 
+          <div dangerouslySetInnerHTML={{ __html: postInfo?.body || "" }}>
+
+          </div>
+          {/* {containsPreTag(postInfo?.body!) === true ? 
            ( 
             <CodeBlock
-            // CodeString={postInfo?.body!}
             />
           ) : 
           (
             <div className='text-sm'>
-            {/* <p>{postInfo?.body}</p> */}
             {Parser(postInfo!.body)}
             </div>  
           )
-          }
-          
+          } */}
+
           <div className='text-gray-300 text-xs mt-4 flex flex-row items-center gap-2'>
             {postInfo?.hashtags.map((item, index) => (
               <span key={index}>#{item}</span>
-              ))}
+            ))}
           </div>
         </article>
       </div>
       {/* COMMENT SECTION */}
       <div className="my-8 p-6 bg-zinc-900 rounded leading-1.5 border border-zinc-700">
-      <h2 className="text-md font-bold mb-4 border-b py-2 border-zinc-600">Discussion</h2>
-      <CommentForm postId={id}/>
-      {commentsData ? 
-        <div>
-        {/* @ts-ignore */}
-        {commentsData.comments.map((item) => (
-          <article className="py-4 border-t border-zinc-700" key={item.id}>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
-                <Image
-                  src="/1.jpg"
-                  alt='user photo'
-                  height={24}
-                  width={24}
-                  className='w-6 h-6 rounded-full object-cover object-center mr-2'
-                />
-                  some user
-                </p> 
-                {/* <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p> */}
-              </div>
-            </div>
-            <p className='text-white text-sm'>{item.body}</p> 
-          </article>
-          ))}
+        <h2 className="text-md font-bold mb-4 border-b py-2 border-zinc-600">Discussion</h2>
+        <CommentForm postId={id} />
+        {commentsData?.comments?.length > 0 ?
+          <div>
+            {/* @ts-ignore */}
+            {commentsData.comments.map((item) => (
+              <article className="py-4 border-t border-zinc-700" key={item.id}>
+                <div className="flex justify-between items-center mb-2">
+                  <div className="flex items-center">
+                    <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
+                      <Image
+                        src="/1.jpg"
+                        alt='user photo'
+                        height={24}
+                        width={24}
+                        className='w-6 h-6 rounded-full object-cover object-center mr-2'
+                      />
+                      some user
+                    </p>
+                    {/* <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p> */}
+                  </div>
+                </div>
+                <p className='text-white text-sm'>{item.body}</p>
+              </article>
+            ))}
+          </div>
+          :
+          <span>No comment</span>
+        }
+
       </div>
-      : 
-      <span>No comment</span>
-      }
-      <div>
-        {/* @ts-ignore */} 
-        {commentsData.comments.map((item) => (
-          <article className="py-4 border-t border-zinc-700" key={item.id}>
-            <div className="flex justify-between items-center mb-2">
-              <div className="flex items-center">
-                <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
-                <Image
-                  src="/1.jpg"
-                  alt='user photo'
-                  height={24}
-                  width={24}
-                  className='w-6 h-6 rounded-full object-cover object-center mr-2'
-                />
-                  some user
-                </p> 
-                {/* <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p> */}
-              </div>
-            </div>
-            <p className='text-white text-sm'>{item.body}</p> 
-          </article>
-          ))}
-      </div>
-    </div>
     </main>
   )
 }

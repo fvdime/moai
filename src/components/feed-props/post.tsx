@@ -12,6 +12,7 @@ export interface PostProp {
   hashtags?: string[];
   createdAt: Date;
   updatedAt?: Date;
+  user?: any;
 }
 
 interface Prop {
@@ -31,12 +32,13 @@ const Post = ({ post }: Prop) => {
 
   const formattedTime = `${dateObject.getHours().toString().padStart(2, '0')}:${dateObject.getMinutes().toString().padStart(2, '0')}`;
 
+  console.log(post)
 
   return (
     <div className="w-full">
       <div className="flex items-start gap-2.5">
         <Image
-          src="/1.jpg"
+          src={post?.user?.profileImage ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${post?.user?.profileImage}` : "/1.jpg"}
           alt='user photo'
           height={32}
           width={32}
@@ -46,8 +48,8 @@ const Post = ({ post }: Prop) => {
           <div className="flex flex-col w-full leading-1.5 p-4 border border-zinc-700 rounded-e-xl rounded-es-xl bg-zinc-800 hover:border-zinc-500 ease-in transition-all duration-500">
             <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse mb-2">
               <div className="text-xs font-bold">
-                <span className="text-white">t/topic name</span>
-                <span className="text-zinc-400"> - username</span>
+                {/* <span className="text-white">t/topic name</span> */}
+                <span className="text-white"> - {post?.user?.username || ""}</span>
               </div>
               <span className="text-xs font-normal text-zinc-400">{formattedDate}, {formattedTime}</span>
             </div>
@@ -66,15 +68,15 @@ const Post = ({ post }: Prop) => {
               </div>
               : null}
 
-              {/* HASHTAGS */}
-              <div className="mb-2">
-                {/* @ts-ignore */}
-                {post?.hashtags.map((item, index) => (
-                  <span className="text-xs text-gray-400 pr-2" key={index}>
-                    {item === null ? "" : `#${item}`}
-                  </span>
-                ))}  
-              </div>
+            {/* HASHTAGS */}
+            <div className="mb-2">
+              {/* @ts-ignore */}
+              {post?.hashtags.map((item, index) => (
+                <span className="text-xs text-gray-400 pr-2" key={index}>
+                  {item === null ? "" : `#${item}`}
+                </span>
+              ))}
+            </div>
 
             {/* <div className="w-full flex items-center justify-between">
               <div className="flex gap-2 text-white">
