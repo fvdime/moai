@@ -17,10 +17,6 @@ export default async function Feed() {
   return (
     <>
       <div className='flex flex-col items-center justify-center gap-y-4'>
-
-        {/* {data.map((item: PostProp, index: number) => (
-          <Post key={item.id} post={item} index={index}/>
-          ))} */}
         {data.map((item: PostProp, index: number) => (
           <Post key={item.id} post={item} index={index} />
         ))}

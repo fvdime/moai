@@ -1,5 +1,4 @@
 import { Link } from '@/components/navigation-link'
-import CommentSection from '@/components/post-props/comment-section'
 import { SinglePost } from '@/services/post'
 import Image from 'next/image'
 import React from 'react'
@@ -20,7 +19,6 @@ const getComments = async (postId: string) => {
 
 
 const PostPage = async ({params}: {params: {postId: string}}) => {
-
   const id = params?.postId
   // console.log("POST ID:::::",id)
 
@@ -57,7 +55,7 @@ const PostPage = async ({params}: {params: {postId: string}}) => {
   return preTags.length > 0;
   }
 
-  console.log(containsPreTag(postInfo?.body!))
+  // console.log(containsPreTag(postInfo?.body!))
 
   return (
     <main className="antialiased text-white">

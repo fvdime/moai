@@ -1,7 +1,12 @@
 import FeedLayout from '@/components/feed-props/feed-layout'
+import { GetCurrentUser } from '@/services/user'
 import React from 'react'
 
-const TopicPage = () => {
+const TopicPage = async () => {
+
+  const currentUser = await GetCurrentUser()
+  // console.log("CURRENT USERRRRRRR:::::::::",currentUser)
+
   return (
     <FeedLayout isUserPage={true} >
        <span className=''>
