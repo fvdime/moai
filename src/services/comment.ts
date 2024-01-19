@@ -18,5 +18,8 @@ export const GetAllCommentByPost = async (postId: string) => {
         where: {
             postId: postId,
         },
+        include: {
+            user: true,
+        },
     });
 };

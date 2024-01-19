@@ -19,7 +19,7 @@ export default async function Feed() {
   // const data = await GetAllPost()
   // console.log(data)
 
-  console.log(data)
+  // console.log(data)
 
   return (
     <>

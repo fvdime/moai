@@ -24,6 +24,7 @@ const LoadMore = () => {
 
       const timeoutId = setTimeout(() => {
         fetchPosts(page).then((res) => {
+          console.log(res.posts)
           setData(d => [...d, ...res.posts]);
           //SetPage(p => p + 1)
           page = page + 1
@@ -39,9 +40,9 @@ const LoadMore = () => {
 
   return (
     <>
-        {data.map((item: PostProp, index: number) => (
-          <Post key={item.id} post={item} index={index} />
-        ))}
+      {data.map((item: PostProp, index: number) => (
+        <Post key={item.id} post={item} index={index} />
+      ))}
       <section ref={ref}>
         {inView && isLoading && (
           <div className="animate-bounce text-xs font-medium text-white">

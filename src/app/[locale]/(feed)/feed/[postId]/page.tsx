@@ -35,9 +35,13 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
   const dateObject = new Date(timestamp!);
 
   const options = { month: 'short', day: '2-digit' } as const;
-  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(dateObject);
+  let formattedDate = ""
+  let formattedTime = ""
+  if (dateObject) {
+    formattedTime = `${dateObject.getHours().toString().padStart(2, '0')}:${dateObject.getMinutes().toString().padStart(2, '0')}`;
+    formattedDate = new Intl.DateTimeFormat('en-US', options).format(dateObject);
+  }
 
-  const formattedTime = `${dateObject.getHours().toString().padStart(2, '0')}:${dateObject.getMinutes().toString().padStart(2, '0')}`;
 
   // const commentTimestamp = commentsData?.comments[0].createdAt
   // const commentDateObject = new Date(commentTimestamp!);
@@ -66,14 +70,14 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
               <div className='flex flex-row justify-center items-center gap-4'>
                 <Link href={`/user/${postInfo?.userId}`}>
                   <Image
-                    src="/1.jpg"
+                    src={postInfo?.user?.profileImage ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${postInfo?.user?.profileImage}` : "/1.jpg"}
                     alt='user photo'
                     height={32}
                     width={32} className='w-8 h-8 rounded-full object-cover object-center'
                   />
                 </Link>
                 <Link href={`/user/${postInfo?.userId}`}>
-                  <span className="text-sm font-bold hover:underline">username</span>
+                  <span className="text-sm font-bold hover:underline">{postInfo?.user?.username}</span>
                 </Link>
               </div>
               <span className="text-xs font-normal text-zinc-400">{formattedDate}, {formattedTime}</span>
@@ -128,13 +132,13 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
                   <div className="flex items-center">
                     <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
                       <Image
-                        src="/1.jpg"
+                        src={item?.user?.profileImage ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${item?.user?.profileImage}` : "/1.jpg"}
                         alt='user photo'
                         height={24}
                         width={24}
                         className='w-6 h-6 rounded-full object-cover object-center mr-2'
                       />
-                      some user
+                      {item?.user?.username}
                     </p>
                     {/* <p className="text-xs text-zinc-400"><time>{cFormattedDate}, {cFormattedTime}</time></p> */}
                   </div>

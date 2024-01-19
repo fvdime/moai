@@ -22,44 +22,47 @@ export const DeletePost = async (where: { id: string; userId?: string }) => {
 };
 
 type PipelineStage =
-  | {
-      $search: {
-        index: string
-        text: {
-          query: string
-          fuzzy: {}
-          path: {
-            wildcard: string
-          }
-        }
+    | {
+          $search: {
+              index: string;
+              text: {
+                  query: string;
+                  fuzzy: {};
+                  path: {
+                      wildcard: string;
+                  };
+              };
+          };
       }
-    }
-  | {
-      $skip: number
-    }
-  | {
-      $limit: number
-    }
-    
+    | {
+          $skip: number;
+      }
+    | {
+          $limit: number;
+      };
+
 export const GetAllPost = async () => {
-   const posts = await prisma.post.findMany()
-   return posts
-}
+    const posts = await prisma.post.findMany();
+    return posts;
+};
 
 export const SinglePost = async (id: string) => {
     const post = await prisma.post.findFirst({
         where: {
-            id: id
-        }
-    })
+            id: id,
+        },
+        include: {
+            user: true,
+        },
+    });
 
-    return post
-}
+    return post;
+};
 
 export const GetAllPostsByUser = async (userId: string) => {
-  return await prisma.post.findMany({
-      where: {
-          userId: userId,
-      },
-  });
+    return await prisma.post.findMany({
+        where: {
+            userId: userId,
+        },
+    });
 };
