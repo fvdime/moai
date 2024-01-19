@@ -29,7 +29,7 @@ const PostModal = () => {
         value={title}
         onChange={(e: any) => SetTitle(e.target.value)}
       />
-      <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="image" type="file" accept="image/*" />
+      <input className="block w-full text-sm border rounded-lg cursor-pointer text-gray-400 focus:outline-none bg-zinc-700 border-zinc-600 placeholder-zinc-400" id="image" type="file" accept="image/*" />
       <TextEditor text={text} SetText={SetText} />
       <TagInput tag={tag} setTag={setTag} />
     </div>
