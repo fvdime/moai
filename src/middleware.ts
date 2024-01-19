@@ -23,15 +23,20 @@ export default async function middleware(request: NextRequest) {
     const response = handleI18nRouting(request);
     response.headers.set('x-your-custom-locale', defaultLocale);
 
-    const { value: token } = cookies.get('token') ?? {
+    let { value: token } = cookies.get('token') ?? {
         value: null,
     };
 
+    if (!token)
+        token = request?.headers?.get('authorization')?.split(' ')[1] || null
+    
     let payload;
 
     if (token) {
         payload = await verifyJwtToken(token);
     }
+
+    // console.log(token)
 
     const temp = nextUrl.pathname.slice(3, nextUrl.pathname.length - 1);
     let isAuthPageRequested;
