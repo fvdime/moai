@@ -19,6 +19,9 @@ export async function GET(
             skip,
             take: limit,
             orderBy: { createdAt: 'desc' }, // Order by creation date, adjust as needed
+            include: {
+                user: true,
+            },
         });
 
         // Return a JSON response with the 'posts' key
