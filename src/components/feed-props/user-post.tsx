@@ -16,7 +16,7 @@ const UserPost = async ({ post, user, isOwnPage }: any) => {
       <Link href={`/feed/${post.id}`}>
         <div className="flex items-start gap-2.5">
           <Image
-            src={user?.profileImage ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${user?.profileImage}` : "/1.jpg"}
+            src={user?.profileImage ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${user?.profileImage}` : "/1.png"}
             alt='user photo'
             height={32}
             width={32}

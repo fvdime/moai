@@ -76,7 +76,7 @@ const Navbar = ({ Search, Profile, Settings, Logout, ContactLink, SourceLink }: 
               onClick={() => setIsOpen(!isOpen)}
             >
               <Image
-                src={image ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${image}` : "/1.jpg"}
+                src={image ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${image}` : "/1.png"}
                 alt='user photo'
                 height={32}
                 width={32}
@@ -110,7 +110,7 @@ const Navbar = ({ Search, Profile, Settings, Logout, ContactLink, SourceLink }: 
             </li>
             <hr className='' />
             <li>
-              <Link href="#" className="block px-4 py-2 mt-4 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{ContactLink}</Link>
+              <Link href="mailto:studioeloquent@gmail.com" className="block px-4 py-2 mt-4 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{ContactLink}</Link>
             </li>
             <li>
               <Link href="https://github.com/fvdime/moai" target='blank' className="block px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded">{SourceLink}</Link>

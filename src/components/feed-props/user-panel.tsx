@@ -55,7 +55,7 @@ const UserPanel = ({ username, profilePic }: any) => {
     <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700 flex flex-col gap-8">
       <div className="flex flex-col items-center justify-between gap-4">
         <Image
-          src={image ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${image}` : "/1.jpg"}
+          src={image ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${image}` : "/1.png"}
           alt='user photo'
           height={96}
           width={96}

@@ -36,7 +36,7 @@ const Post = ({ post }: Prop) => {
     <div className="w-full">
       <div className="flex items-start gap-2.5">
         <Image
-          src={post?.user?.profileImage ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${post?.user?.profileImage}` : "/1.jpg"}
+          src={post?.user?.profileImage ? `${process.env.NEXT_PUBLIC_AWS_BUCKET_URL}${post?.user?.profileImage}` : "/1.png"}
           alt='user photo'
           height={32}
           width={32}
@@ -111,7 +111,7 @@ const Post = ({ post }: Prop) => {
       {/* POST W/ CODE BLOCK */}
       {/* <div className="flex items-start gap-2.5 mt-4">
         <Image
-          src="/1.jpg"
+          src="/1.png"
           alt='user photo'
           height={32}
           width={32}

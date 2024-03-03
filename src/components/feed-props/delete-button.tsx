@@ -20,12 +20,6 @@ const DeleteButton = ({ id }: any) => {
     }
   }
 
-  useEffect(() => {
-
-    return () => {
-    }
-  }, [])
-
 
   return (
     <button onClick={handleDelete}>

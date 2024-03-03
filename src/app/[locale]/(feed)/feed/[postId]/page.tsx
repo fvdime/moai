@@ -70,7 +70,7 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
               <div className='flex flex-row justify-center items-center gap-4'>
                 <Link href={`/user/${postInfo?.userId}`}>
                   <Image
-                    src={postInfo?.user?.profileImage ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${postInfo?.user?.profileImage}` : "/1.jpg"}
+                    src={postInfo?.user?.profileImage ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${postInfo?.user?.profileImage}` : "/1.png"}
                     alt='user photo'
                     height={32}
                     width={32} className='w-8 h-8 rounded-full object-cover object-center'
@@ -132,7 +132,7 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
                   <div className="flex items-center">
                     <p className="inline-flex items-center mr-3 font-semibold text-sm text-white">
                       <Image
-                        src={item?.user?.profileImage ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${item?.user?.profileImage}` : "/1.jpg"}
+                        src={item?.user?.profileImage ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL + `${item?.user?.profileImage}` : "/1.png"}
                         alt='user photo'
                         height={24}
                         width={24}
