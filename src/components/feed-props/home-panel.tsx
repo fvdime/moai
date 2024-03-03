@@ -1,16 +1,15 @@
-"use client"
+"use client";
 
-import Button from '../button'
-import useCreateModal from '@/hooks/useCreateModal'
-import React, { useCallback } from 'react'
+import Button from "../button";
+import useCreateModal from "@/hooks/useCreateModal";
+import React, { useCallback } from "react";
 
 const HomePanel = () => {
-
-  const CreatePostModal = useCreateModal()
+  const CreatePostModal = useCreateModal();
 
   const handleClick = useCallback(() => {
-    CreatePostModal.onOpen()
-  }, [CreatePostModal])
+    CreatePostModal.onOpen();
+  }, [CreatePostModal]);
 
   return (
     <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700">
@@ -18,19 +17,15 @@ const HomePanel = () => {
         <h5 className="text-sm font-bold leading-none text-white uppercase pb-2">
           Home
         </h5>
-        <p className="text-xs font-medium text-zinc-300 pt-2">
-          create or idk some long information
+        <p className="text-xs font-medium text-zinc-200 pt-2">
+          Create and share a post about something that confuses you!
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <Button
-        label='Create Post'
-        fullWidth
-        onClick={handleClick}
-        /> 
-      </div>  
+        <Button label="Create Post" fullWidth onClick={handleClick} />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomePanel
+export default HomePanel;
