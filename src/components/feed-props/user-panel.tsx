@@ -84,7 +84,7 @@ const UserPanel = ({ username, profilePic, isOwnPage }: any) => {
               secondary
               fullWidth
             />
-            <Button label="Create Post" fullWidth onClick={handlePost} />
+            <Button label="Create Post" fullWidth onClick={handlePost} type={"button"} />
           </div>
           <hr />
           <div className="flex flex-col gap-2">

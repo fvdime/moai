@@ -20,7 +20,7 @@ const CommentForm = (postId: any) => {
       });
 
       console.log('Comment submitted successfully:', response.data);
-
+      setBody("")
       router.refresh()
 
     } catch (error) {

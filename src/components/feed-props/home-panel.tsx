@@ -22,7 +22,7 @@ const HomePanel = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2">
-        <Button label="Create Post" fullWidth onClick={handleClick} />
+        <Button label="Create Post" fullWidth onClick={handleClick} type={"button"} />
       </div>
     </div>
   );
