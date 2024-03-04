@@ -37,8 +37,6 @@ export default async function middleware(request: NextRequest) {
     payload = await verifyJwtToken(token);
   }
 
-  // console.log(token)
-
   const temp = nextUrl.pathname.slice(3, nextUrl.pathname.length - 1);
   let isAuthPageRequested;
   if (temp != "") isAuthPageRequested = isAuthPages(temp);
@@ -83,17 +81,6 @@ export default async function middleware(request: NextRequest) {
   if (temp == "" && payload) {
     return NextResponse.redirect(new URL(`/${defaultLocale}/feed`, url));
   }
-
-  // console.log(String(payload?.id));
-
-  // const { value: token2 } = cookies.get('token') ?? {
-  //     value: null,
-  // };
-
-  // if (temp == '' && token2) {
-  //     const response = NextResponse.redirect(new URL(`/en/feed`, url));
-  //     return response;
-  // }
 
   response.headers.set("id", String(payload?.id));
 

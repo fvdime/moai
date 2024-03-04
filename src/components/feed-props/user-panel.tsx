@@ -95,7 +95,7 @@ const UserPanel = ({ username, profilePic, isOwnPage }: any) => {
               onClick={handleClick}
             />
           </div>
-          <Toaster position="top-right" reverseOrder={false} />
+          <Toaster position="bottom-right" reverseOrder={false} />
         </div>
       ) : (
         <div className="w-full p-4 border rounded shadow sm:p-8 bg-zinc-800 border-zinc-700 flex flex-col gap-4">
