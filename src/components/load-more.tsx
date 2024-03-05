@@ -21,13 +21,13 @@ const LoadMore = () => {
       const delay = 500;
       const timeoutId = setTimeout(async () => {
         const newData = await fetchPosts(page, 6);
-        console.log(newData)
+        console.log("ND:", newData)
         setData(prevData => [...prevData, ...newData]);
+        if (newData.length > 0)
+          // @ts-ignore
+          document.getElementById("page").innerHTML = String(page + 1 || 2)
         setIsLoading(false);
       }, delay);
-
-      // @ts-ignore
-      document.getElementById("page").innerHTML = String(page + 1 || 2)
 
       return () => clearTimeout(timeoutId);
     }

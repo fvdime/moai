@@ -3,9 +3,10 @@
 export const fetchPosts = async (page: number, limit: number) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}posts/get?page=${page}&limit=${limit}`,
-    { next: { revalidate: 0 } }
+    { cache: "no-store" }
   );
   const responseBody = await response.json();
+  console.log("RB", responseBody);
   if (!responseBody) {
     return [];
   }
