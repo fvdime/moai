@@ -31,9 +31,20 @@
         "Modal": {
           "Profile": "Profile",
           "Settings": "User Settings",
+          "NewPost": "New Post",
           "Logout": "Log Out",
           "ContactLink": "Contact Us",
           "SourceLink": "Source Code"
+        }
+      },
+      "Modals": {
+        "CreatePostModal": {
+          "Title": "Create Post",
+          "ButtonLabel": "Post",
+          "TagLabel": "Tag",
+          "TitleInput" : "Title",
+          "FooterContent" : "Do you want anything else? ",
+          "FooterContentLink" : "Visit Here"
         }
       }
     }

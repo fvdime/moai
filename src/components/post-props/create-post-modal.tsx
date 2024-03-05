@@ -7,10 +7,27 @@ import Modal from '../modal'
 import TextEditor from './text-editor'
 import TagInput from './tag-input'
 import axios from 'axios'
-import { error } from 'console'
 import { useRouter } from "@/components/navigation-link";
+import Link from 'next/link'
 
-const PostModal = () => {
+type PostModalProps = {
+  Title: string;
+  ButtonLabel: string;
+  TagLabel: string;
+  TitleInput: string;
+  FooterContentI: string;
+  FooterContentLink: string;
+};
+
+
+const PostModal = ({
+  Title,
+  ButtonLabel,
+  TagLabel,
+  TitleInput,
+  FooterContentI,
+  FooterContentLink,
+}: PostModalProps) => {
   const router = useRouter()
 
   const [title, SetTitle] = useState("")
@@ -24,7 +41,7 @@ const PostModal = () => {
   const bodyContent = (
     <div className='flex flex-col gap-4'>
       <Input
-        placeholder='Title'
+        placeholder={TitleInput}
         type='text'
         value={title}
         onChange={(e: any) => SetTitle(e.target.value)}
@@ -37,9 +54,11 @@ const PostModal = () => {
 
   const FooterContent = (
     <div className='text-gray-500 text-center mt-4'>
-      <p>idk idk idk idk
-        <span
-          className='text-white cursor-pointer hover:underline'>idk</span>
+      <p>{FooterContentI}
+        <Link
+        target='_blank'
+        href="https://github.com/fvdime/moai"
+          className='text-white cursor-pointer hover:underline'>{FooterContentLink}</Link>
       </p>
     </div>
   )
@@ -48,8 +67,8 @@ const PostModal = () => {
     <Modal
       // disabled={isLoading}
       isOpen={CreateModal.isOpen}
-      title='Create Post'
-      actionLabel='Post'
+      title={Title}
+      actionLabel={ButtonLabel}
       onClose={CreateModal.onClose}
       onSubmit={() => {
         const input: any = document.getElementById("image")
@@ -79,7 +98,6 @@ const PostModal = () => {
         })
       }}
       body={bodyContent}
-      footer={FooterContent}
     />
   )
 }

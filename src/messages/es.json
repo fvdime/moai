@@ -31,9 +31,20 @@
         "Modal": {
           "Profile": "Perfil",
           "Settings": "Ajustes de Usuario",
+          "NewPost": "Nueva publicación",
           "Logout": "Cerrar Sesión",
           "ContactLink": "Contáctenos",
           "SourceLink": "Código Fuente"
+        }
+      },
+      "Modals": {
+        "CreatePostModal": {
+          "Title": "Crear nueva publicación",
+          "ButtonLabel": "Compartir",
+          "TagLabel": "Tag",
+          "TitleInput" : "Title",
+          "FooterContent" : "Quieres algo mas? ",
+          "FooterContentLink" : "Visite aqui"
         }
       }
     }

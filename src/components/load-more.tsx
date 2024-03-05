@@ -41,7 +41,7 @@ const LoadMore = () => {
       ))}
       <section ref={ref}>
         {inView && isLoading && (
-          <div className="animate-bounce text-xs font-medium text-white">
+          <div className="animate-bounce text-xs font-medium text-white w-24">
             ⠀⠀⣀⠤⠤⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⠀⠀
             ⠀⢰⠁⠀⠀⠈⢆⠀⠀⠀⠀⠀⠀⠀⢠⠎⠁⠀⠈⡆⠀⠀
             ⠀⢸⠀⠀⠀⠀⠘⡆⠀⠀⠀⠀⠀⡰⠁⠀⠀⠀⠀⡇⠀⠀

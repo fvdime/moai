@@ -32,8 +32,19 @@
           "Profile": "プロフィール",
           "Settings": "ユーザ設定",
           "Logout": "ログアウト",
+          "NewPost": "新しい投稿",
           "ContactLink": "お問合せ",
           "SourceLink": "ソースコード"
+        }
+      },
+      "Modals": {
+        "CreatePostModal": {
+          "Title": "新規投稿を作成",
+          "ButtonLabel": "シェア",
+          "TagLabel": "タグ",
+          "TitleInput" : "タイトル",
+          "FooterContent" : "もっと知りたい？",
+          "FooterContentLink" : "訪問"
         }
       }
     }
