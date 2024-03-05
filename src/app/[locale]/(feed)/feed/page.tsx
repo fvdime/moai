@@ -8,7 +8,7 @@ import { GetAllPost } from '@/services/post';
 export default async function Feed() {
 
   const data = await prisma?.post.findMany({
-    take: 8,
+    take: 6,
     orderBy: { createdAt: "desc" },
     include: {
       user: true

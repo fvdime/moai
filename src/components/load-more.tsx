@@ -1,7 +1,7 @@
 "use client"
 
 import { fetchPosts } from '@/actions/post.action'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import Post, { PostProp } from './feed-props/post'
 
@@ -14,24 +14,22 @@ const LoadMore = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let page = 2;
+    let page = Number(document.getElementById("page")?.innerHTML) || 2
     if (inView) {
       setIsLoading(true);
-      // Add a delay of 500 milliseconds
       const delay = 500;
-
       const timeoutId = setTimeout(async () => {
-        const data = await fetchPosts(page, 6)
-        setData(d => [...d, ...data]);
-        //SetPage(p => p + 1)
-        page = page + 1
+        const newData = await fetchPosts(page, 6);
+        setData(prevData => [...prevData, ...newData]);
         setIsLoading(false);
       }, delay);
 
+      // @ts-ignore
+      document.getElementById("page").innerHTML = String(page + 1 || 2)
+
       return () => clearTimeout(timeoutId);
     }
-  }, [inView])
-
+  }, [inView]);
 
   return (
     <>
@@ -57,6 +55,7 @@ const LoadMore = () => {
           </div>
         )}
       </section>
+      <div className='hidden' id="page">2</div>
     </>
   )
 }
