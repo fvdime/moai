@@ -1,17 +1,19 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "../navigation-link";
 import Image from "next/image";
 import LanguageSwitcher from "../language-switcher";
 import useUserState from "@/hooks/useUserState";
 import axios from "axios";
 import { useRouter } from "../navigation-link";
+import useCreateModal from "@/hooks/useCreateModal";
 
 type NavbarProps = {
   Search: string;
   Profile: string;
   Settings: string;
+  NewPost: string;
   Logout: string;
   ContactLink: string;
   SourceLink: string;
@@ -21,12 +23,19 @@ const Navbar = ({
   Search,
   Profile,
   Settings,
+  NewPost,
   Logout,
   ContactLink,
   SourceLink,
 }: NavbarProps) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+
+  const CreatePostModal = useCreateModal();
+
+  const handleClick = useCallback(() => {
+    CreatePostModal.onOpen();
+  }, [CreatePostModal]);
 
   const [user, SetUser] = useState({
     profileImage: "",
@@ -138,6 +147,14 @@ const Navbar = ({
               >
                 {Settings}
               </Link>
+            </li>
+            <li>
+              <button
+                onClick={handleClick}
+                className="block w-full px-4 py-2 hover:bg-zinc-600 text-zinc-200 hover:text-white rounded text-left"
+              >
+                {NewPost}
+              </button>
             </li>
             <li>
               <button

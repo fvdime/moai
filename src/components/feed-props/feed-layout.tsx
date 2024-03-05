@@ -4,6 +4,16 @@ import HomePanel from "./home-panel";
 import React from "react";
 import { UserParams } from "@/libs/types";
 
+type FeedLayoutProps = {
+  Search: string;
+  Profile: string;
+  Settings: string;
+  NewPost: string;
+  Logout: string;
+  ContactLink: string;
+  SourceLink: string;
+};
+
 const FeedLayout = ({
   children,
   isUserPage,

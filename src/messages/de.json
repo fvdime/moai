@@ -30,9 +30,20 @@
         "Modal": {
           "Profile": "Profil",
           "Settings": "Benutzereinstellungen",
+          "NewPost": "Neuer Beitrag",
           "Logout": "Ausloggen",
           "ContactLink": "Kontaktiere Uns",
           "SourceLink": "Quellcode"
+        }
+      },
+      "Modals": {
+        "CreatePostModal": {
+          "Title": "Neuer Beitrag",
+          "ButtonLabel": "Teilen",
+          "TagLabel": "Tag",
+          "TitleInput" : "Title",
+          "FooterContent" : "Willst du noch etwas anderes? ",
+          "FooterContentLink" : "Besuchen Sie hier"
         }
       }
     }
