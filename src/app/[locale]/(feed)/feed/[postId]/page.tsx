@@ -6,6 +6,7 @@ import Parser from "html-react-parser";
 import { JSDOM } from "jsdom";
 import CodeBlock from "@/components/post-props/code-block";
 import CommentForm from "@/components/forms/comment-form";
+import { redirect } from "next/navigation";
 
 const getComments = async (postId: string) => {
   const res = await fetch(
@@ -23,12 +24,15 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
   const id = params?.postId;
   // console.log("POST ID:::::",id)
 
+  const postInfo = await SinglePost(id);
+
+  if (!postInfo) return redirect("/feed")
+
   const commentsData = await getComments(id);
   // console.log(commentsData)
 
   // console.log(commentsData.comments[0].body)
 
-  const postInfo = await SinglePost(id);
 
   // console.log(postInfo)
 
@@ -43,9 +47,9 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
       .getHours()
       .toString()
       .padStart(2, "0")}:${dateObject
-      .getMinutes()
-      .toString()
-      .padStart(2, "0")}`;
+        .getMinutes()
+        .toString()
+        .padStart(2, "0")}`;
     formattedDate = new Intl.DateTimeFormat("en-US", options).format(
       dateObject
     );
@@ -81,7 +85,7 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
                     src={
                       postInfo?.user?.profileImage
                         ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL +
-                          `${postInfo?.user?.profileImage}`
+                        `${postInfo?.user?.profileImage}`
                         : "/1.png"
                     }
                     alt="user photo"
@@ -158,7 +162,7 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
                         src={
                           item?.user?.profileImage
                             ? process.env.NEXT_PUBLIC_AWS_BUCKET_URL +
-                              `${item?.user?.profileImage}`
+                            `${item?.user?.profileImage}`
                             : "/1.png"
                         }
                         alt="user photo"
