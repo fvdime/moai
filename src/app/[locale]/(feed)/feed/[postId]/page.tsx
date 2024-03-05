@@ -22,19 +22,12 @@ const getComments = async (postId: string) => {
 
 const PostPage = async ({ params }: { params: { postId: string } }) => {
   const id = params?.postId;
-  // console.log("POST ID:::::",id)
 
   const postInfo = await SinglePost(id);
 
   if (!postInfo) return redirect("/feed")
 
   const commentsData = await getComments(id);
-  // console.log(commentsData)
-
-  // console.log(commentsData.comments[0].body)
-
-
-  // console.log(postInfo)
 
   const timestamp = postInfo?.createdAt;
   const dateObject = new Date(timestamp!);
@@ -55,23 +48,12 @@ const PostPage = async ({ params }: { params: { postId: string } }) => {
     );
   }
 
-  // const commentTimestamp = commentsData?.comments[0].createdAt
-  // const commentDateObject = new Date(commentTimestamp!);
-
-  // const cOptions = { month: 'short', day: '2-digit' } as const;
-  // const cFormattedDate = new Intl.DateTimeFormat('en-US', cOptions).format(commentDateObject);
-
-  // const cFormattedTime = `${commentDateObject.getHours().toString().padStart(2, '0')}:${commentDateObject.getMinutes().toString().padStart(2, '0')}`;
-  // console.log(formattedDate, formattedTime);
-
   function containsPreTag(htmlString: string) {
     const dom = new JSDOM(htmlString);
     const preTags = dom.window.document.querySelectorAll("pre");
 
     return preTags.length > 0;
   }
-
-  // console.log(containsPreTag(postInfo?.body!))
 
   return (
     <main className="antialiased text-white">

@@ -15,13 +15,11 @@ const LoadMore = () => {
 
   useEffect(() => {
     let page = Number(document.getElementById("page")?.innerHTML) || 2
-    console.log(page)
     if (inView) {
       setIsLoading(true);
       const delay = 500;
       const timeoutId = setTimeout(async () => {
         const newData = await fetchPosts(page, 6);
-        console.log("ND:", newData)
         setData(prevData => [...prevData, ...newData]);
         if (newData.length > 0)
           // @ts-ignore

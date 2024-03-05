@@ -6,7 +6,6 @@ export const fetchPosts = async (page: number, limit: number) => {
     { cache: "no-store" }
   );
   const responseBody = await response.json();
-  console.log("RB", responseBody);
   if (!responseBody) {
     return [];
   }

@@ -56,7 +56,6 @@ const Navbar = ({
     axios
       .get("/api/users/getuserbytoken")
       .then((res) => {
-        console.log(res);
         if (res.data?.success) {
           SetUser(res.data?.user);
         }

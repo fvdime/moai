@@ -19,7 +19,6 @@ const CommentForm = (postId: any) => {
         postId: postId?.postId
       });
 
-      console.log('Comment submitted successfully:', response.data);
       setBody("")
       router.refresh()
 

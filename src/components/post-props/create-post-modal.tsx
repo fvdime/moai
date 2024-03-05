@@ -56,8 +56,8 @@ const PostModal = ({
     <div className='text-gray-500 text-center mt-4'>
       <p>{FooterContentI}
         <Link
-        target='_blank'
-        href="https://github.com/fvdime/moai"
+          target='_blank'
+          href="https://github.com/fvdime/moai"
           className='text-white cursor-pointer hover:underline'>{FooterContentLink}</Link>
       </p>
     </div>
@@ -72,10 +72,6 @@ const PostModal = ({
       onClose={CreateModal.onClose}
       onSubmit={() => {
         const input: any = document.getElementById("image")
-        // console.log(input?.files[0])
-        // console.log(title)
-        // console.log(tag)
-        // console.log(text)
         var resultString = tag.join(',');
         const formData = new FormData()
         formData.append("image", input?.files[0])
@@ -83,9 +79,7 @@ const PostModal = ({
         formData.append("hashtags", resultString)
         formData.append("title", title)
         axios.post("/api/posts/create", formData).then((res) => {
-          console.log(res.data?.success)
           if (res.data?.success) {
-            console.log(res?.data?.post?.id)
             setTag([])
             SetText("")
             SetTitle("")
@@ -94,7 +88,6 @@ const PostModal = ({
             CreateModal.onClose()
           }
         }).catch((err) => {
-          console.log(err)
         })
       }}
       body={bodyContent}

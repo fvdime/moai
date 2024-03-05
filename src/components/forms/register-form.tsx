@@ -38,9 +38,7 @@ const RegisterForm = ({ registerHeader, username, email,
   const router = useRouter()
 
   const onSubmit = (values: InitialValues, actions: { resetForm: () => void; setSubmitting: (arg0: boolean) => void }) => {
-    console.log(values)
     axios.post("/api/auth/register", values).then((res) => {
-      console.log(res.data.data)
       if (res.data?.success == true) {
         localStorage.setItem("user", JSON.stringify(res.data?.data))
         toast.success('Successfully!')

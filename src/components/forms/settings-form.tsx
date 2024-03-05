@@ -82,7 +82,6 @@ const SettingsModal = () => {
         axios.post("/api/users/update", { username, email }).then(res => {
           SettingModal.onClose()
         }).catch(err => {
-          console.log(err)
           SettingModal.onClose()
         })
       }}

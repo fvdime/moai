@@ -11,12 +11,10 @@ const DeleteButton = ({ id }: any) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:3000/api/posts/delete/${id}`).then()
-      console.log("DELETED")
 
       router.refresh()
 
     } catch (error) {
-      console.log("error", error)
     }
   }
 

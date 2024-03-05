@@ -8,8 +8,6 @@ import TextEditor from './text-editor'
 
 const CommentSection = (id: string) => {
 
-  console.log(id)
-  
   return (
     <div className="my-8 p-6 bg-zinc-900 rounded leading-1.5 border border-zinc-700">
       <h2 className="text-md font-bold mb-4">Discussion</h2>
@@ -21,7 +19,7 @@ const CommentSection = (id: string) => {
           />
         </div>
       </form>
-      <Comment id={id}/>
+      <Comment id={id} />
     </div>
   )
 }

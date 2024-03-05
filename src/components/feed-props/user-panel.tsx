@@ -25,8 +25,6 @@ const UserPanel = ({ username, profilePic, isOwnPage }: any) => {
   const image: any = useUserState((state) => state.image);
   const setImage: any = useUserState((state) => state.setImage);
 
-  console.log(profilePic);
-
   // const [image, SetImage] = useState(profilePic);
   const fileInputRef = useRef(null);
   const handleButtonClick = () => {

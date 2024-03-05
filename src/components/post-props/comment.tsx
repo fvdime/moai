@@ -3,11 +3,6 @@ import Image from 'next/image'
 import React from 'react'
 
 const Comment = async ({ id }: any) => {
-
-  // const comment = await GetAllCommentByPost(id)
-
-  // console.log(comment)
-
   return (
     <div>
       <article className="p-4 text-base border-t border-zinc-700">

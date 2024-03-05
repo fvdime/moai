@@ -11,9 +11,6 @@ export async function GET(request: NextRequest) {
     const page = Number(url.searchParams.get("page")) || 1;
     const limit = Number(url.searchParams.get("limit")) || 6;
 
-    console.log("P:", page);
-    console.log("L:", limit);
-
     const skip = (page - 1) * limit;
 
     // Fetch paginated posts using Prisma
@@ -25,9 +22,6 @@ export async function GET(request: NextRequest) {
         user: true,
       },
     });
-
-    console.log(posts);
-
     // Return a JSON response with the 'posts' key
     return NextResponse.json({ posts, success: true }, { status: 200 });
   } catch (error) {

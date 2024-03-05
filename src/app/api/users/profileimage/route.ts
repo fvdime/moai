@@ -22,8 +22,6 @@ export async function POST(req: NextRequest) {
       file: fileData,
     });
 
-    console.log(res?.result?.$metadata?.httpStatusCode);
-
     if (res?.result?.$metadata?.httpStatusCode != 200) {
       return NextResponse.json(
         { success: false },
@@ -49,7 +47,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({ success: true, user: updateUser });
   } catch (err) {
-    console.log(err);
     return error({
       error: err,
       statusCode: httpStatus.INTERNAL_SERVER_ERROR,
