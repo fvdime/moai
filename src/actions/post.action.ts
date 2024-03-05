@@ -3,7 +3,7 @@
 export const fetchPosts = async (page: number, limit: number) => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_BASE}posts/get?page=${page}&limit=${limit}`,
-    { next: { revalidate: 3600 } }
+    { next: { revalidate: 0 } }
   );
   const responseBody = await response.json();
   if (!responseBody) {
