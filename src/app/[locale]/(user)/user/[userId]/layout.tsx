@@ -14,10 +14,18 @@ export default function UserPageLayout({ children }: { children: React.ReactNode
         Search={t('Navbar.Search')}
         Profile={t('Navbar.Modal.Profile')}
         Settings={t('Navbar.Modal.Settings')}
+        NewPost={t('Navbar.Modal.NewPost')}
         Logout={t('Navbar.Modal.Logout')}
         ContactLink={t('Navbar.Modal.ContactLink')}
         SourceLink={t('Navbar.Modal.SourceLink')} />
-      <PostModal />
+      PostModal<
+      Title={t('Modals.CreatePostModal.Title')}
+      ButtonLabel={t('Modals.CreatePostModal.ButtonLabel')}
+      TagLabel={t('Modals.CreatePostModal.TagLabel')}
+      TitleInput={t('Modals.CreatePostModal.TitleInput')}
+      FooterContentI={t('Modals.CreatePostModal.FooterContent')}
+      FooterContentLink={t('Modals.CreatePostModal.FooterContentLink')}
+      />
       <SettingsModal />
       {children}
     </div>
