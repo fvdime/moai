@@ -20,16 +20,12 @@ const LoadMore = () => {
       // Add a delay of 500 milliseconds
       const delay = 500;
 
-      console.log("burada")
-
-      const timeoutId = setTimeout(() => {
-        fetchPosts(page).then((res) => {
-          console.log(res.posts)
-          setData(d => [...d, ...res.posts]);
-          //SetPage(p => p + 1)
-          page = page + 1
-        });
-
+      const timeoutId = setTimeout(async () => {
+        const data = await fetchPosts(page)
+        console.log(data)
+        setData(d => [...d, ...data]);
+        //SetPage(p => p + 1)
+        page = page + 1
         setIsLoading(false);
       }, delay);
 
@@ -41,7 +37,7 @@ const LoadMore = () => {
   return (
     <>
       {data.map((item: PostProp, index: number) => (
-        <Post key={item.id} post={item} index={index} />
+        <Post key={index} post={item} index={index} />
       ))}
       <section ref={ref}>
         {inView && isLoading && (

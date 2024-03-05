@@ -9,10 +9,13 @@ export default async function Feed() {
 
   const data = await prisma?.post.findMany({
     take: 8,
+    orderBy: { createdAt: "desc" },
     include: {
       user: true
     }
   })
+
+
 
   return (
     <>
