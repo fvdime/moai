@@ -6,7 +6,7 @@ import Parser from "html-react-parser";
 import { JSDOM } from "jsdom";
 import CodeBlock from "@/components/post-props/code-block";
 import CommentForm from "@/components/forms/comment-form";
-import { redirect } from "next/navigation";
+import { redirect } from "@/components/navigation-link"
 
 const getComments = async (postId: string) => {
   const res = await fetch(

@@ -62,7 +62,7 @@ export default async function middleware(request: NextRequest) {
       return response;
     }
 
-    return NextResponse.redirect(new URL(`/`, url));
+    return NextResponse.redirect(new URL(`/${defaultLocale}`, url));
   }
 
   const temp2 = nextUrl.pathname.slice(3, nextUrl.pathname.length - 1);
