@@ -1,11 +1,11 @@
 "use server";
 
-export const fetchPosts = async (page: number) => {
+export const fetchPosts = async (page: number, limit: number) => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_BASE}posts/get?page=${page}&limit=8`
+    `${process.env.NEXT_PUBLIC_API_BASE}posts/get?page=${page}&limit=${limit}`,
+    { next: { revalidate: 3600 } }
   );
   const responseBody = await response.json();
-  console.log(responseBody);
   if (!responseBody) {
     return [];
   }

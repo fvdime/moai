@@ -2,17 +2,21 @@ import prisma from "@/libs/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  request: NextRequest,
-  {
-    query,
-    limit = 6,
-    page = 1,
-    hashtags,
-  }: { query: string; limit: number; page: number; hashtags: Array<String> }
+  request: NextRequest
+  // {
+  //   query,
+  //   limit,
+  //   page = 1,
+  //   hashtags,
+  // }: { query: string; limit: number; page: number; hashtags: Array<String> }
 ) {
-  console.log("buradaaaaaaaaaa");
   try {
     // Calculate the number of items to skip based on the page and limit
+    const url = new URL(request.url);
+
+    const page = Number(url.searchParams.get("page")) || 1;
+    const limit = Number(url.searchParams.get("limit")) || 6;
+
     const skip = (page - 1) * limit;
 
     // Fetch paginated posts using Prisma

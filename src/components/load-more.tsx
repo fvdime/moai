@@ -21,8 +21,7 @@ const LoadMore = () => {
       const delay = 500;
 
       const timeoutId = setTimeout(async () => {
-        const data = await fetchPosts(page)
-        console.log(data)
+        const data = await fetchPosts(page, 6)
         setData(d => [...d, ...data]);
         //SetPage(p => p + 1)
         page = page + 1
