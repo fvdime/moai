@@ -59,7 +59,7 @@ const LoginForm = ({ loginHeader, email,
   })
   return (
     <div className="flex flex-row justify-center items-center h-full w-screen text-white">
-      <div className="hidden md:flex h-full w-3/12 bg-indigo-950 p-4">
+      <div className="hidden md:flex h-full w-3/12 bg-indigo-950 p-4 bg-[url('/image.webp')] bg-cover">
       </div>
       <form onSubmit={handleSubmit} className="h-full w-full md:w-6/12 py-16 px-8 md:px-16 bg-zinc-900 flex flex-col justify-center">
         <div className="flex items-center justify-center mb-5">

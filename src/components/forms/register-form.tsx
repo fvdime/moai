@@ -71,7 +71,7 @@ const RegisterForm = ({ registerHeader, username, email,
 
   return (
     <div className="flex flex-row justify-center items-center h-full w-screen text-white">
-      <div className="hidden md:flex h-full w-3/12 bg-black p-4">
+      <div className="hidden md:flex h-full w-3/12 bg-black p-4 bg-[url('/image2.webp')] bg-cover">
       </div>
       <form
         onSubmit={handleSubmit}
